@@ -8,6 +8,8 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
+        //tip:two-pointer
+        //use nums[j] > nums[i - 2] instead of using var count
         if(nums.size() <= 2){
             return nums.size();
         }

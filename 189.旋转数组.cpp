@@ -8,7 +8,7 @@
 class Solution {
 public:
     /*
-    // 
+    // O(k*n),O(n^2/2) worst
     void rotate(vector<int>& nums, int k) {
         if(nums.size() == 0){
             return ;
@@ -34,7 +34,8 @@ public:
             }
         }
     }*/
-    //手画过程，依次后移，k个一组，将不冲突的并行
+    //tip1:手画过程，依次后移，k个一组，将不冲突的并行
+    //O(n)
     void rotate(vector<int>& nums, int k) {
         if(nums.size() <= 1){
             return ;
@@ -60,7 +61,8 @@ public:
         }
     }
     /*
-    // 翻转数组，仍原地修改，但快好多
+    //tip2:rotate vector
+    //O(n),翻转数组，仍原地修改，但快好多
     void reverse(vector<int>& nums,int a,int b){
         for(int i = a;i <= (b + a)/2;i++){
             int tmp = nums[i];

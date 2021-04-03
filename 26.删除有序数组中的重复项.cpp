@@ -8,6 +8,8 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
+        //tip:two-pointer:no conflict,equidirect 
+        //note:keetp array in order
         if(nums.size() == 0){
             return 0;
         }
