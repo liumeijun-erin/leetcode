@@ -139,13 +139,14 @@
 
     - str1.insert(pos,str2) # str1[pos]处插入str2,即从第4位[3]开始为str2
     - str1.insert(iter1,iter21,iter2)
-    
+  
 - erase,时间复杂度O(N)
 	
 	  - str.erase(iter)
-	  - str.erase(iter1,iter2)
-    - str.erase(pos,length)
-  
+	  
+      - str.erase(iter1,iter2)
+  - str.erase(pos,length)
+    
   - clear #str.clear(),时间复杂度O(1)
   
   - substr() #返回子串, str.substr(pos,len),时间复杂度O(len)
@@ -160,3 +161,8 @@
   
     - str1.replace(pos,len,str2)
     - str1.replace(it1,it2,str2)
+
+
+
+### + 提高算法
+
