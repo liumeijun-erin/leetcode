@@ -79,7 +79,7 @@
     ```C++
     for(set<int>::iterator iter = s.begin();iter != s.end();iter++){
     
-    	print("%d",*iter);#结果自动增序！
+    	print("%d",*iter);#结果自动增序！因为内部红黑树实现
     }
     ```
 
@@ -105,9 +105,7 @@
     
   
 
-## string 
-
-- 常用于
+## string 字符串
 
 - 头文件： #include<string> #不同于cstring/string.h
 
@@ -163,4 +161,6 @@
     - str1.replace(it1,it2,str2)
 
 
+
+## map 字典/映射
 
