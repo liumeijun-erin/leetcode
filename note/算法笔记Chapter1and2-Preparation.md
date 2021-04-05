@@ -259,7 +259,7 @@ const double eps = 1e-8;
 
 #### #note9：无穷大INF通常定义为0x3fffffff/2^30-1避免相加超过int的范围
 
-int 上限2^31 - 1但通常定义INF为2^30 - 1
+int 上限2^31 - 1 0x7fffffff但通常定义INF为2^30 - 1
 
 ```C++
 const int INF = （1<<30) - 1;//注意括号，否则先减
