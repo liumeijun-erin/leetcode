@@ -135,7 +135,7 @@
     ```C++
     for(set<int>::iterator iter = s.begin();iter != s.end();iter++){
     
-    	print("%d",*iter);#结果自动增序！因为内部红黑树实现
+    	print("%d",*iter);#结果自动增序！因为内部红黑树实现。可以设置优先级见下。
     }
     ```
 
@@ -183,7 +183,7 @@
 
     #iter->first,iter->second/(* iter).first,(* iter).second得到key、value
 
-    #注意key值自带顺序，由小至大
+    #注意key值自带顺序，由小至大。可以设置优先级见下。
 
 - 自带函数：
 
@@ -321,9 +321,19 @@
 
     
 
-## + set，map，priority
+## + set，map，priority_queue的优先级设置
 
+set<int> s;//默认升序,相当于 set<int,less<int> >。
+set<int,less<int> > s; //该容器是按升序方式排列元素。
+set<int,greater<int>> s;  //该容器是按降序方式排列元素。
 
+map<T1,T2> m;*//默认按键的升序方式排列元素,相当于下方的less*
+map<T1,T2,less<T1> > m; *//该容器是按键的升序方式排列元素。*
+map<T1,T2,greater<T1>> m;  *//该容器是按键的降序方式排列元素。
+
+priority_queue<int> p; //默认降序， 大顶堆，队头元素最大
+priority_queue<int, vector<int>, less<int> > p; //相当于默认
+priority_queue<int, vector<int>, greater<int>> p; //升序，最小值优先级队列，小顶堆
 
 ## + iterator迭代器
 
