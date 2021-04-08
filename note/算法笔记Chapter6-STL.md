@@ -218,7 +218,7 @@
 - 访问：只能访问首尾,不能用下标取值
 
   - q.front() #注意使用之前必须用q.empty判空！
-  - q.end()
+  - q.back() #注意 尾元素也可以！不是end，是back！
 
 - 自带函数：
 
@@ -227,7 +227,7 @@
   - q.empty() #返回true/false，时间复杂度O(1)
   - q.size() # 时间复杂度O(1)
   - q.front()
-  - q.end()
+  - q.back()
 
 
 
