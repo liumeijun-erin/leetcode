@@ -74,22 +74,24 @@
 
   - 字典序比较 < ,>,<=,>=,==,!=
 
-    iter = s.find(n)
-
   - length/size #str.length()/str.size(),时间复杂度O(1)
 
   - insert,时间复杂度O(N)
 
     - str1.insert(pos,str2) # str1[pos]处插入str2,即从第4位[3]开始为str2
-    - str1.insert(iter1,iter21,iter2)
-
-  - erase,时间复杂度O(N)
-
+    
+  - str1.insert(iter1,iter21,iter22)
+  
+- erase,时间复杂度O(N)
+  
     - str.erase(iter)
     - str.erase(iter1,iter2)
     - str.erase(pos,length)
-
+    - PS.str erase干净之后不能用，不是“”
+  
   - clear #str.clear(),时间复杂度O(1)
+
+    - PS.str clear之后不能用，不是“”
 
   - substr() #返回子串, str.substr(pos,len),时间复杂度O(len)
 
@@ -99,10 +101,14 @@
 
   - str.find(str2) #如果是子串，返回第一个pos；否则string::npos,时间复杂度O(len1*len2)
 
+    - 还有rfind
+  
   - replace,时间复杂度O(str1.length())
-
+  
     - str1.replace(pos,len,str2)
     - str1.replace(it1,it2,str2)
+  
+  * 有的标准还有back，pop_back等
 
 
 
