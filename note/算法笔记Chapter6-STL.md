@@ -88,7 +88,7 @@
     - str.erase(iter1,iter2)
     - str.erase(pos,length)
     - PS.str erase干净之后不能用，不是“”
-  
+    
   - clear #str.clear(),时间复杂度O(1)
 
     - PS.str clear之后不能用，不是“”
@@ -297,7 +297,7 @@
   - q.pop() # 时间复杂度O(1)，注意使用之前必须用q.empty判空！
   - q.empty() #返回true/false，时间复杂度O(1)
   - q.size() # 时间复杂度O(1)
-  - q.top()
+  - q.top() #注意是top不是front
 
 
 
