@@ -4,6 +4,18 @@
 
 # Chapter6 - STL
 
+## +queue,map,set,string方法汇总小结：
+
+**queue：**push, front, back, pop, empty, size
+
+**map：**find, erase, size, clear, insert, count,empty
+
+**set：**find, erase,size, clear, insert, count, empty
+
+**string：**=/+=/关系运算符length/size/insert/erase substr, find, replace, size, length
+
+注意：vector中没有find
+
 ## vector 变长数组
 
 * 常用于：
@@ -210,6 +222,10 @@
   - clear #mp.clear(),时间复杂度O(N)
 
   - insert #mp.insert(make_pair(a,b))
+  
+  - count #有key返回1，无key返回0
+  
+  - size
 
 
 
@@ -423,7 +439,7 @@ bool cmp(typename a,typename b){
 }
 
 bool cmp(structname a,structname b){
-	return a.value<b.value;#定义结构体排序
+	return a.value<b.value;#定义结构体排序，注意<对应升序
 }
 
 bool cmp(structname a,structname b){

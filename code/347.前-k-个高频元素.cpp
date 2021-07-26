@@ -38,6 +38,8 @@ public:
         }
         return res;
     }*/
+    /*way1:use quick sort:O(N)+unordered_map(O(logn)-O(1))
+    //:use quickSort
     int quickSort(vector<pair<int,int> > &p,int low,int high){
         //note:note spcial situation ,like 1,2,3;2,2,2
         //use:always check if index >= array.len before use it!!!!avoid overflow!!
@@ -54,7 +56,7 @@ public:
         return low;
     }
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        //tip2:use quick sort,O(N)
+        //tip2:use quick sort:O(N)+unordered_map(O(logn)-O(1))
         unordered_map<int,int> m; //tip:faster
         for(int i = 0;i < nums.size();i++){
             if(m.find(nums[i])!=m.end()) m[nums[i]] += 1;
@@ -84,6 +86,27 @@ public:
                 k-= (pos - low);
                 low = pos;
             }
+        }
+        return res;
+    }*/
+    //way2：use bucketSort+hash、unordered_map O(n)
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int,int> count;
+        int maxn = 0;
+        for(const int & num : nums){
+            maxn = max(maxn,++count[num]);
+        }
+        vector<vector<int> > bucket(maxn + 1);
+        for(const auto & p:count){
+            bucket[p.second].push_back(p.first);
+        }
+        vector<int> res;
+        for(int i = maxn;i >= 1;i--){
+            for(const int & num: bucket[i]){
+                res.push_back(num);
+                if(res.size() == k) break;
+            }
+            if(res.size() == k) break;
         }
         return res;
     }
