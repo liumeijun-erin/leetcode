@@ -797,7 +797,9 @@ else l=mid+1;
 
 #### note:++i好像更常用一点，返回左值i;i++是加了i又返回i的值
 
+#### note：stoi/atoi C++string转int/float；反之to_string
 
+#### note：istringstream输入
 
 
 
