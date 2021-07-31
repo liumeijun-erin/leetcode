@@ -4,6 +4,42 @@
 
 # Chapter6 - STL
 
+## +STL分类和实现的简单介绍（具体实现因编译器而异）：
+
+* sequence containers：维持顺序的容器
+
+  * vector动态数组：随机读取O(1)，尾端增删O(1)；可当stack用
+  * list双向链表：不支持快速随机读取；可当stack和queue用
+  * deque双端队列：随机读取O(1)，头尾端增删O(1)
+  * array固定数组
+  * forward_list单向列表
+
+* container adaptors：基于其他容器实现的数据结构
+
+  * stack：LIFO，默认基于deque实现；常用与深度搜索，一些字符串匹配以及单调栈问题
+  * queue：FIFO，默认基于deque实现；常用于广度搜索
+  * priority_queue：默认基于vector实现堆结构，排序数组O(nlogn)，插入任意值O(logn)，获得最大值O(1)，删除最大值O(logn)；可以大顶堆也可以小顶堆，用于维护数据结构并快速获得最大/小值
+
+* associative containers:实现了排好序的数据结构
+
+  * set有序无重复集合：底层实现默认为红黑树（特殊的二叉查找树）,排序数组O(nlogn)，插入、删除、查找任意值O(logn)，获得最大/小值O(logn)
+
+    ps.set vs priority：set获得最大/最小值时间复杂度略高，而priority_queue默认不支持删除任意值
+
+  * multiset支持重复元素的map
+
+  * map有序映射、有序表:在set上加映射关系,可以对每个元素key存一个value
+
+  * multimap：支持重复元素的map
+
+* unordered associative containers：对每个associative containers 实现了hash版本
+  * unordered_set：哈希集合，可以在O(1)时间快速插入，查找，删除元素;快！
+  * unordered_multiset：支持重复元素的unordered_set
+  * unordered_map：哈希映射/哈希表；key范围固定的时候也可以自己定义hash函数使用vector自己实现散列hash
+  * unordered_multimap：支持重复元素的unordered_map
+
+
+
 ## +queue,map,set,string方法汇总小结：
 
 **queue：**push, front, back, pop, empty, size
