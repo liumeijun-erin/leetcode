@@ -801,6 +801,11 @@ else l=mid+1;
 
 #### note：istringstream输入
 
+#### note:emplace代替insert，push_back,push_front提高速度
+
+容器中插入的元素永远都不是元素本身，而是元素的一份copy。emplace其实就是调用了拷贝构造函数，在容器创建元素时，就直接根据需要插入的元素进行了构造。而insert,push_back等，先是构造了元素，在调用了重载运算符函数，对函数进行了赋值。所以比较耗时。故推荐使用emplace组的函数进行插入。注意：在map表中，emplace是有些许的不同，它是返回了一个pair，第二个值是bool值，表示插入的是否成功(map键是唯一的,所以当有相同的key插入时，是会失败的)
+emplace族的三个函数：emplace_front(),emplace_back(),emplace()
+
 
 
 

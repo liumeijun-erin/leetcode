@@ -18,13 +18,13 @@
 
   * stack：LIFO，默认基于deque实现；常用与深度搜索，一些字符串匹配以及单调栈问题
   * queue：FIFO，默认基于deque实现；常用于广度搜索
-  * priority_queue：默认基于vector实现堆结构，排序数组O(nlogn)，插入任意值O(logn)，获得最大值O(1)，删除最大值O(logn)；可以大顶堆也可以小顶堆，用于维护数据结构并快速获得最大/小值
+  * priority_queue：默认基于vector实现堆结构，排序数组O(nlogn)，插入任意值O(logn)，获得最大值O(1)，删除最大值O(logn)；可以大顶堆也可以小顶堆，用于维护数据结构并快速获得最大/小值。可用vector实现，注意写好swim和sink函数
 
 * associative containers:实现了排好序的数据结构
 
   * set有序无重复集合：底层实现默认为红黑树（特殊的二叉查找树）,排序数组O(nlogn)，插入、删除、查找任意值O(logn)，获得最大/小值O(logn)
 
-    ps.set vs priority：set获得最大/最小值时间复杂度略高，而priority_queue默认不支持删除任意值
+    ps.set vs priority_queue：set获得最大/最小值时间复杂度略高，而priority_queue默认不支持删除任意值
 
   * multiset支持重复元素的map
 
@@ -269,7 +269,7 @@
 
 - 常用于：BFS
 
-  此外地还有双端队列deque（两端可删插）、优先队列priority_queue(由堆实现，保证最大优先值置于首位)
+  此外还有双端队列deque（两端可删插）、优先队列priority_queue(由堆实现，保证最大优先值置于首位)
 
 - 头文件： #include<queue>
 
@@ -353,7 +353,48 @@
   - q.size() # 时间复杂度O(1)
   - q.top() #注意是top不是front
 
+* 可以用vector实现大/小顶堆，因为是完全二叉树，而且左右子树没有大小限制。注意上浮和下沉函数怎么写即可。
 
+  ```C++
+  vector<int> heap;
+  // 获得最大值
+  // 但是要注意序号从1开始:子树2*i，2*i+1,父节点i/2
+  //0开始:子树2*i+1，2*i+2,父节点(i-1)/2
+  void top() {
+  	return heap[0];
+  }
+  // 插入任意值：把新的数字放在最后一位，然后上浮
+  void push(int k) {
+  	heap.push_back(k);
+  	swim(heap.size() - 1);
+  }
+  // 删除最大值：把最后一个数字挪到开头，然后下沉
+  void pop() {
+  	heap[0] = heap.back();
+  	heap.pop_back();
+  	sink(0);
+  }
+  // 上浮
+  void swim(int pos) {
+  	while (pos >= 1 && heap[(pos-1)/2] < heap[pos])) {
+  		swap(heap[(pos-1)/2], heap[pos]);
+  		pos = (pos-1)/2;
+  	}
+  }
+  // 下沉
+  void sink(int pos) {
+  	while (2 * pos + 1 < N) {
+  		int i = 2 * pos+1;
+  		if (i < N && heap[i] < heap[i+1]) ++i;
+          #注意下沉的时候和两个子节点之间较大的交换
+  		if (heap[pos] >= heap[i]) break;
+  		swap(heap[pos], heap[i]);
+  		pos = i;
+  	}
+  }
+  ```
+
+  
 
 ## stack 栈
 
