@@ -795,18 +795,20 @@ else l=mid+1;
 //方法：得向下取整，得用 mid=(r+l)/2;
 ```
 
-#### note:++i好像更常用一点，返回左值i;i++是加了i又返回i的值
+#### note24:++i好像更常用一点，返回左值i;i++是加了i又返回i的值
 
-#### note：stoi/atoi C++string转int/float；反之to_string
+#### note25：stoi/atoi C++string转int/float；反之to_string
 
-#### note：istringstream输入
+#### note26：istringstream输入
 
-#### note:emplace代替insert，push_back,push_front提高速度
+#### note27:emplace代替insert，push_back,push_front/push提高速度(适用于各种STL容器)
 
 容器中插入的元素永远都不是元素本身，而是元素的一份copy。emplace其实就是调用了拷贝构造函数，在容器创建元素时，就直接根据需要插入的元素进行了构造。而insert,push_back等，先是构造了元素，在调用了重载运算符函数，对函数进行了赋值。所以比较耗时。故推荐使用emplace组的函数进行插入。注意：在map表中，emplace是有些许的不同，它是返回了一个pair，第二个值是bool值，表示插入的是否成功(map键是唯一的,所以当有相同的key插入时，是会失败的)
 emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
+#### note28：有时候不要把问题想得特别大，保留所需的最精简/局部信息信息即可。例如218、239题可以使用两个数据结构，一个全部数据（还可以利用原有顺序信息），还有一个数据结构用于当前相关数据的排序/记录。具体使用什么数据结构根据需求再定，然后可以巧妙设计数据结构优化。
 
+#### note29：类似note28，复杂问题可以先合理分类如题218:左右交点，然后聚焦到怎么得出一个解（如移除top后的右交点），然后巧妙利用迭代简化问题。
 
 
 

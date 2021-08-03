@@ -33,7 +33,7 @@
   * multimap：支持重复元素的map
 
 * unordered associative containers：对每个associative containers 实现了hash版本
-  * unordered_set：哈希集合，可以在O(1)时间快速插入，查找，删除元素;快！
+  * unordered_set：哈希集合，可以在O(1)时间快速插入，查找，删除元素;快！！！虽然无序但是相邻仍相邻见128
   * unordered_multiset：支持重复元素的unordered_set
   * unordered_map：哈希映射/哈希表；key范围固定的时候也可以自己定义hash函数使用vector自己实现散列hash
   * unordered_multimap：支持重复元素的unordered_map
@@ -263,7 +263,23 @@
   
   - size
 
+* PS.使用pair作为unordered_map的键值的时候需要额外说明
 
+  ```
+  struct pair_hash
+  {
+      template<class T1, class T2>
+      std::size_t operator() (const std::pair<T1, T2>& p) const
+      {
+          auto h1 = std::hash<T1>{}(p.first);
+          auto h2 = std::hash<T2>{}(p.second);
+          return h1 ^ h2;
+      }
+  };
+  unordered_map<pair<double,double>,int,pair_hash> cnt;
+  ```
+
+  
 
 ## queue 队列
 

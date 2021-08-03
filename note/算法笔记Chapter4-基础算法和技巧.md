@@ -4,23 +4,74 @@
 
 ## 散列/哈希hash
 
-* 实现：map/unordered_map
+* 实现：unordered_set/unordered_map
 * 把元素（key）转换（散列函数H）为整数（唯一标识），然后把这个整数用作**数组下标**进行操作
-
 * 一种空间换时间策略：主要利用数组下标可直接访问!
-
 * 散列函数：
   * 直接定址（原数/线性变换）
   * 平方取中（平方值中间若干位）
   * 除留余数（%mod -mod素数）
-
 * 冲突处理：开放定址（对应位置被占用的时候新位置计算开放定址）/链地址法
   * 线性探查法
   * 平方探查法
   * 链地址法
 * 字符串hash: 转化为26/52/62进制数/拼接（方法不限，只要能唯一标识即可）
 
-​	
+​	可以用类封装vector实现一个简单hash，重点在于 contains，insert，remove和hash函数书写，例如：
+
+```C++
+template <typename T>
+class HashTable {
+	private:
+	vector<list<T>> hash_table;
+	// 哈希函数
+	int myhash(const T & obj) const {
+		return hash(obj, hash_table.size());
+	}
+	public:
+	// size最好是质数
+	HashTable(int size=31) {
+		hash_table.reserve(size);//分配空间，更改capacity但是不改变size
+		hash_table.resize(size);//分配空间，同时改变capacity和size
+        //：reserve接收一个参数，表示预留空间的大小；resize可以接收两个参数：分配空间的大小和要加入的新元素的值，如果第二个参数被省略，那么就调用元素对象的默认构造函数。
+	}
+	~HashTable() {}
+	// 查找哈希表是否存在该值
+	bool contains(const T & obj) {
+		int hash_value = myhash(obj);
+		const list<T> & slot = hash_table[hash_value];
+		std::list<T>::const_iterator it = slot.cbegin();
+		for (; it != slot.cend() && *it != obj; ++it);
+			return it != slot.cend();
+	}
+	// 插入值
+	bool insert(const T & obj) {
+		if (contains(obj)) {
+			return false;
+	}
+	int hash_value = myhash(obj);
+	std::list<T> & slot = hash_table[hash_value];
+	slot.push_front(obj);
+	return true;
+	}
+	// 删除值
+	bool remove(const T & obj) {
+		list<T> & slot = hash_table[myhash(obj)];
+		auto it = find(slot.begin(), slot.end(), obj);
+		if (it == slot.end()) {
+			return false;
+		}
+		slot.erase(it);
+		return true;
+	}
+};
+// 一个简单的对整数实现的哈希函数
+int hash(const int & key, const int &tableSize) {
+	return key % tableSize;
+}
+```
+
+
 
 ## 分治与递归
 

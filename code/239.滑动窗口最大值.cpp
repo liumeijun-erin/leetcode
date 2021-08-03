@@ -20,7 +20,7 @@ public:
         //way2：答案much faster，不存在一个数组，而是存一个值，实时生成答案！！！
         //保存所需要的所有局部信息即可，不需要随时更新
         //随着变化实时生成答案!!，且pop_front操作deque明显快很多
-        deque<int> dq;
+        /*deque<int> dq;
         vector<int> ans;
         for (int i = 0; i < nums.size(); ++i) {
             //因为只需要靠近i的值，所以小于当前的都可以删掉；保存索引可以判断距离！
@@ -35,7 +35,22 @@ public:
                 ans.push_back(nums[dq.front()]);
             }
         }
-        return ans;
+        return ans;*/
+        //way3:自己反省重写一遍m,其实可以原地覆盖，对于每个nums[i]与前k个比较,大的话覆盖，小的话接在后面
+        //但是由于k可能很大，所以使用deque进行优化,由于deque首位为当前可取最大的，所以小的留着直到一旦有大的可能解都清空
+        //答案中deque中存的是index
+        if(k == 1) return nums;
+        vector<int> res;
+        deque<int> q;
+        for(int i = 0;i < nums.size();i++){
+            while(!q.empty()&&q.back() < nums[i]) q.pop_back();
+            q.emplace_back(nums[i]);
+            if(i >= k - 1) {
+                res.emplace_back(q.front());
+                if(nums[i - k + 1] == q.front()) q.pop_front();
+            }
+        }
+        return res;
     }
 };
 // @lc code=end
