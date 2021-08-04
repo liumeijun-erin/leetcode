@@ -36,6 +36,7 @@ public:
         //for example:25\n[3,5,7,17,19,23,29,43,47,53]
         //5 * 5 * 3 and 5 * 3 * 5
         //so use pair<long long,pair<int,int> >:value lowIndex highIndex to avoid duplicate and to reduce space usage
+        //主要思想就是：使用范围乘法控制重复入栈；每次出栈顶之后在范围内都更新一遍top保证左右可能min都在栈中
         if(n == 1) return 1;
         n--;
         priority_queue<pair<long long,pair<int,int> >,vector<pair<long long,pair<int,int> > >,cmp> q;
@@ -51,7 +52,6 @@ public:
             q.pop();
         }
         return (int)q.top().first;
-        //solution3:dp
     }
 };
 // @lc code=end

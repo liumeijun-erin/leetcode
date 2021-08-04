@@ -8,6 +8,7 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
+        //可以改进，把已出现的num作为下标，将该位上的数值置负
         int n = nums.size();
         vector<int> cnt(n);
         vector<int> res;

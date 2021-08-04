@@ -433,6 +433,7 @@
   - s.empty()# 时间复杂度O(1)
 
 * PS.STL stack 没有clear操作，如果清空只能不停pop，空间允许的时候应该直接建立新stack，faster
+* 可以用stack维护单调栈进行大小比较等，如例503有序记录当前未解决问题
 
 ## + set，map，priority_queue的优先级设置
 
