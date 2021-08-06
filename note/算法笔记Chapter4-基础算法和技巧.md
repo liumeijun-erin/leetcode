@@ -81,8 +81,6 @@ int hash(const int & key, const int &tableSize) {
 
 
 
-
-
 ## 分治与递归
 
 * 分治:
@@ -127,9 +125,15 @@ int hash(const int & key, const int &tableSize) {
 ## 二分
 
 * step1：明确参数区间表示含义：左开右闭/左闭右闭/...
-* step2:循环条件while:根据问题本身和参数区间含义确定left <= right)/left<right
-* step3:mid写成a + (b-a)/2
-* step3:更新左区间/右区间：[a,mid-1],[mid+1,b]开区间闭区间根据问题形式都可以选择，但要注意统一格式
-* step4:判断出口结果，返回left/right
+* step2:循环条件while:根据问题本身和参数区间含义确定left <= right)/left<right，还要看只有一个数字的时候是否还要判断
+* step3:更新mid写成a + (b-a)/2
+* step4:更新左区间/右区间：[a,mid-1],[mid+1,b]开区间闭区间根据问题形式都可以选择，但要注意统一格式
+* step5:判断出口结果，返回left/right
 * 常用tip：**如果问题无明确先保持一种习惯，如写左闭右开区间+考虑最后只有1/2/没有点的极限情况，不可以再换用左闭右闭等**
 * note：初始区间要覆盖所有结果--如果判断元素是否存在/如果不存在返回应该在的位置区间不同，数组中插入位子则应该[0,n]多一个
+* note：必须有序
+
+
+
+## 双指针
+
