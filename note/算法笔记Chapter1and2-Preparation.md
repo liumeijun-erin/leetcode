@@ -821,3 +821,6 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note32：利用数组索引储存并行信息，如该值出现过则该处值为0。想尽各种方法多存储信息：448，287
 
 #### note：用a&1判奇偶much faster
+
+#### note33：可用partial_sum,lower_bound，accumulate等函数，不仅方便而且快！！！
+
