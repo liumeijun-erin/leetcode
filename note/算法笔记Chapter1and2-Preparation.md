@@ -824,3 +824,4 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note33：可用partial_sum,lower_bound，accumulate等函数，不仅方便而且快！！！
 
+#### note34：对于O(n)要求的题目，可以考虑多次迭代解决，不用非要一次遍历解决
