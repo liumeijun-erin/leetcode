@@ -8,6 +8,7 @@
 class Solution {
     vector<vector<int> > res;
 public:
+    //参考答案模板：巧妙之处在于使用nums本身作为状态记录，使用swap操作完成数值选择
     void backtracking(vector<int>& nums,int level){
         if(level == nums.size() - 1) {
             res.emplace_back(nums);
