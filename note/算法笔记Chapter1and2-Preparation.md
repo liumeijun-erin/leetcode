@@ -825,3 +825,14 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note33：可用partial_sum,lower_bound，accumulate等函数，不仅方便而且快！！！
 
 #### note34：对于O(n)要求的题目，可以考虑多次迭代解决，不用非要一次遍历解决
+
+#### note35：排列组合类问题使用定长数组+cnt+-比不断pop/push快很多
+
+#### note:if(num)不能区分1和-1
+
+#### note:时刻估计是否数组越界！
+
+#### note:起终点都固定时找最短路径可以两边同时bfs比单边bfs快！
+
+#### note36:要多次利用的值注意不要被++/reverse/insert等影响
+
