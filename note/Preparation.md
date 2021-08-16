@@ -835,3 +835,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note:起终点都固定时找最短路径可以两边同时bfs比单边bfs快！
 
 #### note36:要多次利用的值注意不要被++/reverse/insert等影响
+
+#### note37:子序列、子串等问题一定要判断一下是否要求连续
