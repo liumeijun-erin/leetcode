@@ -836,8 +836,10 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note36:要多次利用的值注意不要被++/reverse/insert等影响
 
-#### note37:审题子序列、子串等问题一定要判断一下是否要求连续
+#### note37:审题子序列、子串等问题一定要判断一下是否要求连续。leetcode中子序列（subsequence）不必连续，子数组（subarray）或子字符串（substring）必须连续。、
 
 #### note38：对于有复杂限制的问题，拆分成不同方向/小限制的组合！！！leetcode135，542
 
 note39：几何题可以多画画图，找到转换条件公式！：221
+
+note40：熟练dp和记搜两种写法，dp快一点
