@@ -7,6 +7,7 @@
 // @lc code=start
 class Solution {
 public:
+    //solution1:
     int maxProfit(int k, vector<int>& prices) {
         vector<int> diff;
         int gap = 0;
@@ -19,14 +20,10 @@ public:
                 } 
                 else diff[diff.size()-1] = diff.back() + prices[i]-prices[i-1];
             }
-            else if(prices[i] - prices[i-1] < 0){
+            else{
                 gap += (prices[i]-prices[i-1]);
             }
         }
-        for(int i = 0;i < diff.size();++i){
-            cout<<diff[i]<<" ";
-        }
-        cout<<endl;
         int sum = 0;
         if((diff.size())/2 <= k) {
             for(const int&d:diff) {
@@ -34,18 +31,48 @@ public:
             }
         }
         else{
-            vector<vector<int> > dp( (diff.size())/2+1,vector<int> (k+1));
-            for(int i = 1;i <= (diff.size())/2;++i){
-                for(int j = 1;j <= k;++j){
-                    dp[i][j] = max(dp[i-1][j-1] + diff[2*i-1],dp[i-1][j]+diff[2*i-2]+diff[2*i-1]);
-                    if(i > 1) dp[i][j] = max(dp[i-2][j-1] + diff[2*i -1],dp[i][j]);
-                    //含义是以i为结尾
+            vector<vector<int> > dp(diff.size()/2+1,vector<int> (k+1));
+            //注意这里遍历次序，以及含义确定：以i为结尾
+            for(int j = 1;j <= k;++j){
+                int max_i = 0;
+                for(int i = 1;i<=(diff.size())/2;++i){
+                    if(dp[i-1][j-1] > dp[max_i][j-1]) max_i = i-1;
+                    dp[i][j] = max(dp[max_i][j-1] + diff[2*i-1],dp[i-1][j]+diff[2*i-2]+diff[2*i-1]);
+                    sum = max(sum,dp[i][j]);
                 }
-                sum = max(sum,dp[i][k]);
             }
         }
         return sum;
     }
+    // 主函数
+    //solution2：答案，使用两个数组进行dp
+    /*int maxProfit(int k, vector<int>& prices) {
+        int days = prices.size();
+        if (days < 2) {
+            return 0;
+        }
+        if (k >= days) {
+            return maxProfitUnlimited(prices);
+        }
+        vector<int> buy(k + 1, INT_MIN), sell(k + 1, 0);
+        for (int i = 0; i < days; ++i) {
+            for (int j = 1; j <= k; ++j) {
+                buy[j] = max(buy[j], sell[j-1] - prices[i]);
+                sell[j] = max(sell[j], buy[j] + prices[i]);
+            }
+        }
+        return sell[k];
+    }
+    // 辅函数
+    int maxProfitUnlimited(vector<int> prices) {
+        int maxProfit = 0;
+        for (int i = 1; i < prices.size(); ++i) {
+        if (prices[i] > prices[i-1]) {
+        maxProfit += prices[i] - prices[i-1];
+        }
+        }
+        return maxProfit;
+    }*/
 };
 //2\n[3,2,6,5,0,3]
 //2\n[0,8,5,7,4,7]
