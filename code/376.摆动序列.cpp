@@ -8,19 +8,20 @@
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
-        if(nums.size() == 1) return 1;
-        if(nums.size() == 2){
-            if(nums[0] == nums[1]) return 0;
-            else return 2;
-        }
-        int cnt = 0;
         int i = 1;
-        while(nums[i] == num[i-1]) ++i;
-        bool pos = (nums[i] > nums[i-1])?true:false;
-        for(;i < nums.size();++i){
-            if(nums[i] - )
+        while(i<nums.size()&&nums[i] == nums[i-1]) ++i;
+        if(i == nums.size()) return 1;
+        int cnt = 2;
+        bool pos = nums[i] > nums[i-1];
+        for(++i;i < nums.size();++i){
+            if(nums[i] - nums[i-1]>0&&!pos||nums[i] - nums[i-1]<0&&pos) {
+                ++cnt;
+                pos = !pos;
+            } 
         }
+        return cnt;
     }
 };
+//[0,0]
 // @lc code=end
 
