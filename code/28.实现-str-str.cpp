@@ -65,6 +65,7 @@ public:
     }
     //abaabac
     //0,-1,0,0,1,2,-1
+ 
     int strStr(string haystack, string needle){
         int k = -1, n = haystack.length(), p = needle.length();
         if (p == 0) return 0;
