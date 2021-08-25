@@ -843,3 +843,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note39：几何题可以多画画图，找到转换条件公式！：221
 
 #### note40：熟练dp和记搜两种写法，dp快一点
+
+#### note41：链表题快慢指针技巧！right，left
