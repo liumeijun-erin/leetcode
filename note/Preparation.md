@@ -844,4 +844,6 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note40：熟练dp和记搜两种写法，dp快一点
 
-#### note41：链表题快慢指针技巧！right，left
+#### note41：链表题快慢指针技巧！fast/slow+left/right
+
+#### note42:混乱的时候不要硬堵，总有更简便优雅的方法 437。树用递归much easier
