@@ -18,10 +18,36 @@
  */
 class Solution {
 public:
+    //solution2:递归写法
+    void del(TreeNode* root, vector<int>& to_delete,unordered_set<int>& s,vector<TreeNode*>& res,bool linked) {
+        if(!root) return;
+        if(s.count(root->val)){
+            del(root->left,to_delete,s,res,false);
+            del(root->right,to_delete,s,res,false);
+        }
+        else{
+            if(!linked) res.emplace_back(root);
+            if(root->left&&s.count(root->left->val)){
+                del(root->left->left,to_delete,s,res,false);
+                del(root->left->right,to_delete,s,res,false);
+                root->left = nullptr;
+            }
+            else{
+                del(root->left,to_delete,s,res,true);
+            }
+            if(root->right&&s.count(root->right->val)){
+                del(root->right->left,to_delete,s,res,false);
+                del(root->right->right,to_delete,s,res,false);
+                root->right = nullptr;
+            }
+            else{
+                del(root->right,to_delete,s,res,true);
+            }
+        }
+    }
     vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
         //solution1:
         //todo:本方法要考虑边界条件太多，
-        //递归写法much easier
         /*vector<TreeNode*> res;
         if(!root) return res;
         queue<TreeNode*> q;
@@ -105,6 +131,12 @@ public:
         }
         return res;*/
         vector<TreeNode*> res;
+        unordered_set<int> s;
+        for(const int& d:to_delete){
+            s.insert(d);
+        }
+        del(root,to_delete,s,res,false);
+        return res;
     }
     //[1,2,null,4,3]\n[2,3]
 };

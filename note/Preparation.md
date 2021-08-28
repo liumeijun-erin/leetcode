@@ -847,3 +847,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note41：链表题快慢指针技巧！fast/slow+left/right
 
 #### note42:混乱的时候不要硬堵，总有更简便优雅的方法 437。树用递归much easier
+
+#### note43：处理子串/子序列的时候不用复制，可以构造辅函数传原数组引用+index范围原地处理much faster：leetcode105
