@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=617 lang=cpp
+ * @lc app=leetcode.cn id=106 lang=cpp
  *
- * [617] 合并二叉树
+ * [106] 从中序与后序遍历序列构造二叉树
  */
 
 // @lc code=start
@@ -18,14 +18,8 @@
  */
 class Solution {
 public:
-    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
-        if(!root1) return root2;
-        if(root1&&root2){
-            root1->val += root2->val;
-            root1->left = mergeTrees(root1->left,root2->left);
-            root1->right = mergeTrees(root1->right,root2->right);
-        }
-        return root1;
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+
     }
 };
 // @lc code=end

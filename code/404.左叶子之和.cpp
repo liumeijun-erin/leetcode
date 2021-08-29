@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=617 lang=cpp
+ * @lc app=leetcode.cn id=404 lang=cpp
  *
- * [617] 合并二叉树
+ * [404] 左叶子之和
  */
 
 // @lc code=start
@@ -18,14 +18,14 @@
  */
 class Solution {
 public:
-    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
-        if(!root1) return root2;
-        if(root1&&root2){
-            root1->val += root2->val;
-            root1->left = mergeTrees(root1->left,root2->left);
-            root1->right = mergeTrees(root1->right,root2->right);
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(!root) return 0;
+        int res = sumOfLeftLeaves(root->right);
+        if(root->left){
+            if(!(root->left->left)&&!(root->left->right)) res += root->left->val;
+            else res += sumOfLeftLeaves(root->left);
         }
-        return root1;
+        return res;
     }
 };
 // @lc code=end
