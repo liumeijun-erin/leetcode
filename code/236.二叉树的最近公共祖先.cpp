@@ -41,9 +41,19 @@ public:
         return node;
     }*/
     //solution2:递归实现
+    //捋清边界应该是有一个是p/q
+    //参考答案!!!
+    //！！！note:过程中可以返回结果可以不同含义，只要函数最后输出是正确结果即可！！！
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root) return root;
-        
+        if(root == p||root == q) return root;
+        //note1：弄清边界条件！
+        //note2：想清楚左右子树和总结果的关系，没有的话不返回nullptr,而是返回root！！！
+        TreeNode* leftRes = lowestCommonAncestor(root->left,p,q);
+        TreeNode* rightRes = lowestCommonAncestor(root->right,p,q);
+        if(leftRes&&rightRes) return root;
+        else if(leftRes) return leftRes;
+        return rightRes;
     }
     //[1,2]\n2\n1
     //[3,5,1,6,2,0,8,null,null,7,4]\n5\n4
