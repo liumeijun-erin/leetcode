@@ -853,3 +853,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note44:TreeNode/ListNode等记录prev用指针类型标记/用node->next->next，省着二次遍历
 
 #### note45：函数返回值不用每次都代表相同的含义，可以有特殊情况，只要最终得到符合题意的结果即可（leetcode236，函数对应的是pq两个节点的最小共同父节点，但是对于一个节点的父节点也有返回值；根据左右子树的返回值情况相当于做异或返回总结果。
+
+#### note46：升序降序一定弄清楚！！！eg priority_queue降序！
