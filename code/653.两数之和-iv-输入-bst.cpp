@@ -18,8 +18,26 @@
  */
 class Solution {
 public:
+    void inorder(unordered_set<int>& s,TreeNode* root,int k,bool& find){
+        if(!root||find) return;
+        inorder(s,root->left,k,find);
+        if(s.count(root->val)) {
+            find = true;
+            return;
+        }
+        else{
+            if(k-root->val<=10000&&k-root->val>=-10000){
+                s.insert(k-root->val);
+            }
+        }
+        inorder(s,root->right,k,find);
+    }
     bool findTarget(TreeNode* root, int k) {
-
+        if(k >20000||k<-20000) return false;
+        unordered_set<int> s;
+        bool find = false;
+        inorder(s,root,k,find);
+        return find;
     }
 };
 // @lc code=end
