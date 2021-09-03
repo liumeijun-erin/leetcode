@@ -52,6 +52,10 @@
 
 注意：vector中没有find
 
+## list链表
+
+leetcode146：splice insert等封装好的操作
+
 ## vector 变长数组
 
 * 常用于：
