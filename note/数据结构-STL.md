@@ -54,7 +54,13 @@
 
 ## list链表
 
-leetcode146：splice insert等封装好的操作
+list+unordered_map组合可以O(1)实现查找、删除、插入
+
+leetcode146/432：splice insert等封装好的操作
+
+front/back ！= begin/end
+
+
 
 ## vector 变长数组
 
