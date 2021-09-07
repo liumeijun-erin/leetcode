@@ -140,7 +140,7 @@ front/back ！= begin/end
 
     - str1.insert(pos,str2) # str1[pos]处插入str2,即从第4位[3]开始为str2
     
-  - str1.insert(iter1,iter21,iter22)
+    - str1.insert(iter1,iter21,iter22)
   
 - erase,时间复杂度O(N)
   
