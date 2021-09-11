@@ -859,3 +859,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note47：利用list+unordered_map实现O（1）查找和删除和插入：leetcpde432 146
 
 #### note48：cmp函数一定要传引用不要传值！！！！差距很大！！！或是vector<vector<>> 直接使用cmp即可不用自定义！！！见leetcode5864
+
+#### note49：注意链表增删问题特殊考虑移动head的极端情况！必要时+dummy
