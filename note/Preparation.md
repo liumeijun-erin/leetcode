@@ -863,3 +863,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note49：注意链表增删问题特殊考虑移动head的极端情况！必要时+dummy
 
 #### note50：找特定要求排列组合时可以顺序：列出所有可能筛选正向思考/倒序：利用前缀树等构建，计算数量。构建leetcode600/筛选leetcode5870
+
+#### note51:观察数据量，敢于暴力遍历leetcode5869
