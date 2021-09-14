@@ -869,3 +869,6 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note51:观察数据量，敢于暴力遍历leetcode5869
 
 #### note52:常用中间量要会用变量存储不要一次一次算，much faster。leetcode54
+
+#### note53：最短路径类问题想到广搜，就别用dfs硬抗了。所有路径dfs回溯可，最短用bfs。拿到题先思考，不要直接硬写。leetcode127
+
