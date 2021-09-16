@@ -872,3 +872,4 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note53：最短路径类问题想到广搜，就别用dfs硬抗了。所有路径dfs回溯可，最短用bfs。拿到题先思考，不要直接硬写。leetcode127
 
+#### note54：分情况判断的题目如果判断是否是某特殊情况很exhausting，不单独写，可以把它放到其它情况解法种一步一步筛出来：leetcode201
