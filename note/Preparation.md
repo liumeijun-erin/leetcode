@@ -879,3 +879,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note56：删改很多的时候不用vector，而是用list！性能好很多！leetcode355
 
 #### note57:动态规划等考虑倍数更新，如leetcode650
+
+#### note58:二分法不要总想着加复杂的判断终止条件，应该完全使用while（left,right)判断。理清思路再写其实并不复杂。忌一顿乱写leetcode275
