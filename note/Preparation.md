@@ -875,3 +875,7 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note54：分情况判断的题目如果判断是否是某特殊情况很exhausting，不单独写，可以把它放到其它情况解法种一步一步筛出来：leetcode201
 
 #### note55：同样思路int[]比vector性能好很多：但前提是操作简单，长度和初始化固定。leetcode36性能提升好多！
+
+#### note56：删改很多的时候不用vector，而是用list！性能好很多！leetcode355
+
+#### note57:动态规划等考虑倍数更新，如leetcode650
