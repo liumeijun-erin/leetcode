@@ -881,3 +881,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note57:动态规划等考虑倍数更新，如leetcode650
 
 #### note58:二分法不要总想着加复杂的判断终止条件，应该完全使用while（left,right)判断。理清思路再写其实并不复杂。忌一顿乱写leetcode275
+
+#### note59:sum和各个位数和之间关系：各位数和%9==sum%9见leetcode258
