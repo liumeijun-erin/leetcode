@@ -885,3 +885,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note59:sum和各个位数和之间关系：各位数和%9==sum%9见leetcode258
 
 #### note60:有事捋清思路，可以化复杂条件筛选为顺序一步一步走然后更新得到结果leetcode11
+
+#### note61构造dp数组的时候多重循环遍历顺序很重要！！！，用笔画一画体会一下不同含义 ：leetcode377！！！
