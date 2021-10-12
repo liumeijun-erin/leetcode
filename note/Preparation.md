@@ -891,3 +891,7 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note62：图问题要想到转换为顶点问题：入度出度、重复数等leetcode391
 
 #### note63:通过unordered_map<TreeNode*,int> 实现树的动态规划.leetcode337
+
+note64：合理利用stl-api二分搜索（set+lower_bound），leetcode363
+
+note65：暴力一部分+优化(降维)，leetcode363
