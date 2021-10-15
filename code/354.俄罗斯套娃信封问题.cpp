@@ -8,7 +8,7 @@
 class Solution {
 public:
     // tip1:二叉搜索条件谨慎写，尤其是和其他组件迭代的时候检查好再进行其他步骤。tricky
-    //tip2！！！：数据预处理很重要,参考答案！！！使用w相同h逆序处理！！！这样避免12,1-12,5：[3,4],[12,2],[12,5]应该处理12的时候记录用前面的[3,4],最后替换成[12,2]
+    //tip2！！！：数据预处理很重要,这里参考了答案！！！使用w相同h逆序处理！！！这样避免12,1-12,5：[3,4],[12,2],[12,5]应该处理12的时候记录用前面的[3,4],最后替换成[12,2]
     int maxEnvelopes(vector<vector<int>>& envelopes) {
         sort(envelopes.begin(),envelopes.end(),[](vector<int>& e1,vector<int>& e2){
             if(e1[0] == e2[0]) return e1[1] > e2[1];

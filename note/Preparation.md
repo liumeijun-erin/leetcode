@@ -895,3 +895,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note64：遇到有具体数字阈值的时候一定要想到二分搜索优化，需要时记得可以合理利用stl-api二分搜索（set+lower_bound），leetcode315+363
 
 #### note65：暴力一部分+优化(降维)，leetcode363
+
+#### note66:一级/二级排序顺序很重要，尤其是有对比的时候设置好可以事半功倍。且不一定一个顺序，见leetcode354
