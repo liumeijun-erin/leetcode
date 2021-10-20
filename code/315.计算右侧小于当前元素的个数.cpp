@@ -24,7 +24,7 @@ public:
             i += lowbit(i);
         }
     }
-    int query(int i, vector<int>&C){//注意这里的前缀和包括i
+    int query(int i, vector<int>& C){//注意这里的前缀和包括i
         int sum = 0;
         while (i >= 1) {
             sum += C[i];
@@ -52,5 +52,6 @@ public:
         return res;
     }
 };
+
 // @lc code=end
 
