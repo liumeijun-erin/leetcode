@@ -897,3 +897,9 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note65：暴力一部分+优化(降维)，leetcode363
 
 #### note66:一级/二级排序顺序很重要，尤其是有对比的时候设置好可以事半功倍。且不一定一个顺序，见leetcode354
+
+#### note67：字符串匹配时善用二维动态规划：dp[i][j] leetcode44
+
+对于可变长匹配，认真思考状态转移方程：
+
+`situation p[j] == '*' :dp[i][j] = dp[i][j-1]||dp[i-1][j]`这里不用列出所有i-1,i-2....这样递归即可！！！
