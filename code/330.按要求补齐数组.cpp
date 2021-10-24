@@ -7,7 +7,10 @@
 // @lc code=start
 class Solution {
 public:
-    //  本题不会。依靠答案缕清思路。tip1：nums,n--按照n遍历，处理nums的方法
+    //  本题不会。依靠答案缕清思路。
+    //tip1：nums,n--按照n遍历，
+    //tip2:处理nums的方法：不在tip3里单独划分，概括为+value。clever！
+    //tip3:加入一个数字之后范围变化情况1-2*n-1
     //本题捋不清了，参考答案进行重构！！！！
     //已有思路大致方向对，但是有点乱.到底是遍历1-nums还是1-n
     //得到结论遍历1-n,确保1-pos都可达(而不是都在nums里)：pos若nums中没有则cnt++，此时加入pos可以确保[pos+1,2*pos-1]段可达，pos = 2*pos
