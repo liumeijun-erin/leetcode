@@ -903,3 +903,7 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 对于可变长匹配，认真思考状态转移方程：
 
 `situation p[j] == '*' :dp[i][j] = dp[i][j-1]||dp[i-1][j]`这里不用列出所有i-1,i-2....这样递归即可！！！
+
+#### note68：dfs时候无论tmp还是vector<res>传引用真的快好多！
+
+#### note69：使用vector实现单调栈！！！top使用index+有好处->简单，且可查看下一个值 leetcode321
