@@ -906,4 +906,6 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note68：dfs时候无论tmp还是vector<res>传引用真的快好多！
 
-#### note69：使用vector实现单调栈！！！top使用index+有好处->简单，且可查看下一个值 leetcode321
+#### note69：使用vector实现单调栈！！！top使用index+有好处->简单，且可查看下一个值 
+
+#### note70：不要要求一下子构造出最优解，复杂问题可以考虑从一个维度遍历：如leetcode321拼接最大数，可以遍历两个数组最大子序列长度i+j == k。多算一点中间结果出来反而算法更经济！
