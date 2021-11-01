@@ -909,3 +909,11 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note69：使用vector实现单调栈！！！top使用index+有好处->简单，且可查看下一个值 
 
 #### note70：不要要求一下子构造出最优解，复杂问题可以考虑从一个维度遍历：如leetcode321拼接最大数，可以遍历两个数组最大子序列长度i+j == k。多算一点中间结果出来反而算法更经济！
+
+#### note71：寻找符合要求的子段i-j的情况，可以用二分+归并降低问题规模同时控制i< j！！！！！leetcode327
+
+#### note72：线段树用法--统计一段区间内的和/平均值+build，insert，count。参考桶排序的思路，可以遍历y结果/遍历x...区间内节点可变：可以实现O（logn)查询和插入，可以保存l，r，sum。leetcode327
+
+###### https://leetcode-cn.com/problems/count-of-range-sum/solution/qu-jian-he-de-ge-shu-by-leetcode-solution/
+
+#### note73：离散化！！！leetcode327
