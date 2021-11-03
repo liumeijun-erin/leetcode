@@ -917,3 +917,5 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 ###### https://leetcode-cn.com/problems/count-of-range-sum/solution/qu-jian-he-de-ge-shu-by-leetcode-solution/
 
 #### note73：离散化！！！leetcode327
+
+#### note74：平衡状态问题可以逆向思考--先假设状态（学会用数据结构保存必要状态，哪怕多用一点空间），然后明确变化关系和边界条件不断动态改变直到平衡（如：可以每次将改变点加入q，再改变受其影响的点知道不再变化。leetcode407！
