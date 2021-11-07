@@ -7,7 +7,8 @@
 // @lc code=start
 class Solution {
 public:
-    //  本题不会：参考答案，使用二维动态规划 dp[i][j]和一维动态规划 cnt[i][j]结合！！！多存一点反而不会超时
+    //  本题不会：参考答案，使用二维动态规划 dp[i][j]和一维动态规划 cnt[i][j]结合！
+    //！！dp解决字符串问题多存一点反而不会超时
     //  failed attempts
     //  简单遍历/bfs/dfs：超时"fifgbeajcacehiicccfecbfhhgfiiecdcjjffbghdidbhbdbfbfjccgbbdcjheccfbhafehieabbdfeigbiaggchaeghaijfbjhi"
     //  分析长段不行的时候 上一小段是否可以能构成left/right应该被存储
