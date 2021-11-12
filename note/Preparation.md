@@ -921,3 +921,6 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 #### note74：平衡状态问题可以逆向思考--先假设状态（学会用数据结构保存必要状态，哪怕多用一点空间），然后明确变化关系和边界条件不断动态改变直到平衡（如：可以每次将改变点加入q，再改变受其影响的点知道不再变化。leetcode407！
 
 #### note75：数学问题分情况写一写找规律！，利用逻辑性手动化简统计一下可以找到数学问题规律：eg想到将数字各位拆开分别统计 leetcode233 leetcode400
+
+#### note76：记搜：unordered_map<string,int> 将状态转化为string表示然后记录答案
+
