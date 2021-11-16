@@ -924,3 +924,4 @@ emplace族的三个函数：emplace_front(),emplace_back(),emplace()
 
 #### note76：记搜：unordered_map<string,int> 将状态转化为string表示然后记录答案
 
+#### note77：数字问题不用维护很大记录，提取转换为只维护一些统计量step、start等即可，降低开销leetcode390
