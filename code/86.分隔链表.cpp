@@ -18,22 +18,22 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode* dummy = new ListNode(0,head),*node = dummy,*pre = dummy;
-        while(node->next&&node->next->val<x){
-            node = node->next;
+        ListNode* dummy = new ListNode(0,head),*node = dummy, *pre = dummy;
+        while(pre->next&&pre->next->val<x){
+            pre = pre->next;
         }
-        pre = node->next;
-        cout<<node->val<<endl;
-        if(!pre) return head;
-        while(pre->next){
-            while(pre->next&&pre->next->val>=x) pre = pre->next;
-            if(pre->next){
-                ListNode* tmp = pre->next;
-                tmp->next = node->next;
-                node->next = tmp;
-                node = tmp;
-                //cout<<node->val<<" "<<pre->val<<endl;
-            }
+        node = pre -> next;
+        while(node){
+            while(node->next&&node->next->val>=x) node = node->next;
+            if(!node->next) break;
+            ListNode* tmp = node->next;
+            node->next = tmp->next;
+            tmp->next = pre->next;
+            pre->next = tmp;
+            pre = tmp;
+            //cout<<node->val<<" "<<pre->val<<endl;
+            
+
         }
         return dummy->next;
     }
