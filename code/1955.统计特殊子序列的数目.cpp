@@ -16,7 +16,8 @@ public:
             switch (num) {
                 // 参考答案这里改进：使用前缀都是0的个数而不是0的个数，省去了算幂的过程
                 // case 0: ++cnt[0];break;
-                // note: 注意这里位移操作一定需要()
+                // note: 注意
+                这里位移操作一定需要()
                 case 0: cnt[0] = (cnt[0] << 1)%mod + 1; break;
                 case 1: cnt[1] = ((cnt[1] << 1)%mod + cnt[0])%mod; break;
                 case 2: cnt[2] = ((cnt[2] << 1)%mod + cnt[1])%mod;
