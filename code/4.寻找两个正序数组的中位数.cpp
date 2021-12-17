@@ -7,6 +7,8 @@
 // @lc code=start
 class Solution {
 public:
+    // tip:充分利用len1 + len2 == k/2的关系
+    // 一边遍历另一边index可以确定然后筛选
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         //solution1:思路挺好，预处理也挺好，但是想的不全面，随着测试用例走，一直在堵窟窿而不是疏通。
         //先预估一下问题的复杂度，否则过于理想化O(n^2)/O(nlogn).所以两层二分O(logn^2)也可接受->O(logm*logn)

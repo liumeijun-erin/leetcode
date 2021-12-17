@@ -10,6 +10,8 @@ public:
     int lengthOfLongestSubstring(string s) {
         int len = 0,l = 0,i;
         unordered_map<char,int> hash;
+        // tip: 利用hash记录位序
+        // 利用 hash + l 保存上一个位置，避免继续遍历
         for(i = 0;i < s.size();++i){
             if(hash.count(s[i])&&hash[s[i]]>=l){
                 len = max(len,i-l);
