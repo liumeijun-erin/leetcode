@@ -11,17 +11,22 @@ public:
         int res = 0;
         sort(houses.begin(), houses.end());
         sort(heaters.begin(), heaters.end());
-        int j = 0;
-        int r1, r2;
-        for (int i = 0; i < houses.size(); ++i) {
-            while (j + 1 < heaters.size() && heaters[j+1] <= houses[i]) ++j;
-            if (heaters[j] > houses[i]) r1 = heaters[j] - houses[i];
-            else r1 = houses[i] - heaters[j];
-            if (j + 1 < heaters.size()) {
-                r2 = heaters[j+1] - houses[i];
-                r1 = min(r2,r1);
+        int i = 0, j = 0;
+        if (heaters[j] > houses[i]) {
+            res = heaters[j] - houses[i];
+            while (i < houses.size() && houses[i] <= heaters[j]) ++i;
+        }
+        while (j + 1 < heaters.size()) {
+            int mid = (heaters[j + 1] + heaters[j])/2;
+            while (i < houses.size() && houses[i] <= heaters[j + 1]) {
+                if(houses[i] <= mid) res = max(houses[i] - heaters[j],res);
+                else res = max(heaters[j+1] - houses[i],res);
+                ++i;
             }
-            res = max(res, r1);
+            ++j;
+        }
+        if (i < houses.size()) {
+            res = max(res, houses[houses.size()-1] - heaters[j]);
         }
         return res;
     }
