@@ -11,6 +11,7 @@ class Solution {
     long long mul1 = 131;
     long long mul2 = 1227;
 public:
+    // 有序即可二分+mul1 mul2 mod二重保障更靠谱
     // 本题不会，参考答案 -- 按rk+长度进行遍历+二分！--RK算法一个不保险用两个
     // key pnt:遍历搜索边界 + >= <= 问题都可以用二分，
     // RK算法从len:n-1-1遍历是否有相同子串 -- > 这一步简化，不用一次遍历，而是
@@ -28,13 +29,16 @@ public:
                 front_mul2 = (front_mul2 * mul2) % mod;
             }
         }
-        pre_s.insert(cur);
+        pre_s.insert(make_pair(cur1,cur2));
         for (int i = 1; i + len -1 < n; ++i) {
-            cur -= (front_mul * arr[i-1]) %mod;
-            cur = (cur + mod) % mod;
-            cur = (cur * mul + arr[i + len -1]) % mod;
-            if (pre_s.count(cur)) return i;
-            pre_s.insert(cur);
+            cur1 -= (front_mul1 * arr[i-1]) %mod;
+            cur2 -= (front_mul2 * arr[i-1]) %mod;
+            if(cur1 < 0) cur1 = (cur1 + mod) % mod;
+            if(cur2 < 0) cur2 = (cur2 + mod) % mod;
+            cur1 = (cur1 * mul1 + arr[i + len -1]) % mod;
+            cur2 = (cur2 * mul2 + arr[i + len -1]) % mod;
+            if (pre_s.count(make_pair(cur1,cur2))) return i;
+            pre_s.insert(make_pair(cur1,cur2));
         }
         return -1;
     }
