@@ -7,36 +7,34 @@
 // @lc code=start
 class Solution {
 public:
+    //   利用有序+查找 所以可以用二分
     vector<int> searchRange(vector<int>& nums, int target) {
-        //左闭右开区间
-        vector<int> res(2,-1);
-        if(nums.empty()) return res;
-        int left = 0,right = nums.size();
-        while(left <= right- 1){
-            int mid = left + (right - left)/2;
-            if(nums[mid] >= target){
-                right = mid;
-            } 
-            else{
-                left = mid + 1;
-            }
+        if (nums.empty()) return vector<int> {-1,-1};
+        int cnt = 0;
+        int l = 0, r = nums.size(), m;
+        while (l < r) {
+            m = (r - l)/2 + l;
+            if (nums[m] > target) r = m;
+            else l = m + 1;
         }
-        if(left < nums.size()&&nums[left] == target) res[0] = left;
-        else return res;
-        left = 0;
-        right = nums.size();
-        while(left <= right- 1){
-            int mid = left + (right - left)/2;
-            if(nums[mid] <= target){
-                left = mid + 1;
-            }
-            else{
-                right = mid;
-            }
+        --r;
+        int right = r;
+        // cout<<right<<endl;
+        if (right <0 ||nums[right] != target)  return vector<int> {-1,-1};
+        l = 0;
+        while (l < r) {
+            m = (r - l)/2 + l;
+            if (target <= nums[m]) r = m;
+            else l = m + 1 ;
         }
-        if(left - 1< nums.size()&&nums[left-1] == target) res[1] = left-1;
-        else return vector<int> {-1,-1};
-        return res;
+        // cout<<l<<endl;
+        if (l <= right) return vector<int> {l,right};
+        return vector<int> {-1,-1};
+        // [5,7,7,8,8,10]\n6
+        // []\n0
+        // [1]\n1
+        // [1]\n0
+        // [1]\n2
     }
 };
 // @lc code=end

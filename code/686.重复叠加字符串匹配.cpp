@@ -49,7 +49,7 @@ public:
     //     return -1;
     // }
     //
-    // solution3-字符串匹配KMP算法 p_id构建和搜索
+    // solution3-字符串匹配KMP算法 p_id构建和搜索 O(m+n)
     int strStr(string& haystack, string& needle) {
         int m = haystack.size(), n = needle.size();
         vector<int> p_id(n);

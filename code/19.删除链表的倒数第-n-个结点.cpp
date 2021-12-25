@@ -19,7 +19,8 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         //参考答案提示:快慢指针
-        //note:考虑清除第一个的情况，加入dummy方便很多
+        //note:考虑清除第一个的情况，加入dummy方便很多!
+        // 其实应该增加一些delete dummy和left->next,但是会增加时间复杂度
         if(!head) return head;
         ListNode* dummy= new ListNode(0,head);
         ListNode *left = dummy,*right = head;
