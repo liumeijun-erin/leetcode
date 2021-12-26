@@ -8,6 +8,7 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
+        // 考虑重复边界值：[3,1,3], [3,3,1,3] \ [1,2,1] [0,1,1,0]
         int left = 0,right = nums.size()-1;
         while(left < right && nums[left] == nums[0]) ++left;
         while(left < right && nums[right] == nums[0]) --right;
