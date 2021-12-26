@@ -7,30 +7,25 @@
 // @lc code=start
 class Solution {
 public:
-    void help(string& tmp,int& left,int& right,int& n,vector<string>& res){
-        if(left == n&&right == n) {
-            res.emplace_back(tmp);
-        }
-        if(left > right) {
-            tmp += ')';
-            ++right;
-            help(tmp,left,right,n,res);
-            tmp.pop_back();
-            --right;
-        }
-        if(left < n){
-            tmp += '(';
-            ++left;
-            help(tmp,left,right,n,res);
-            tmp.pop_back();
-            --left;
+    void help(vector<string>& res, int left, int right, string& tmp, int& n) {
+        if (tmp.size() == 2*n) res.emplace_back(tmp);
+        else {
+            if (left > right) {
+                tmp += ')';
+                help(res, left, right + 1, tmp, n);
+                tmp.pop_back();
+            }
+            if (left < n) {
+                tmp += '(';
+                help(res,left+1, right,tmp, n);
+                tmp.pop_back();
+            }
         }
     }
     vector<string> generateParenthesis(int n) {
-        int left = 0,right = 0;
         vector<string> res;
         string tmp = "";
-        help(tmp,left,right,n,res);
+        help(res, 0, 0, tmp, n);
         return res;
     }
 };
