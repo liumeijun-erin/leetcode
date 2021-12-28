@@ -10,18 +10,14 @@ public:
     int removeElement(vector<int>& nums, int val) {
         //tip:two-pointer front vs end
         //avoid unnecessary moves compared to leetcode26
-        int i = 0;
-        int j = nums.size() - 1;
-        while(i <= j){
-            if(nums[i] == val){
-                nums[i] = nums[j];
-                j--;
-            }
-            else{
-                i++;
-            }
+        // 逆向双指针 vs leetcode26同向
+        int i = 0, j = nums.size()-1;
+        while (i <= j) {
+            while (i <= j && nums[i] != val) ++i;
+            while (i <= j && nums[j] == val) --j;
+            if(i < j) nums[i++] = nums[j--];
         }
-        return j + 1;
+        return i;
     }
 };
 // @lc code=end
