@@ -8,19 +8,19 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int min_prices = prices[0],max_prices = prices[0],max_dif = 0;
-        for(int i = 1;i < prices.size();++i){
-            if(prices[i] < min_prices){
-                max_dif = max(max_dif,max_prices - min_prices);
-                min_prices = prices[i];
-                max_prices = prices[i];
+        if(prices.size() <= 1) return 0;
+        int low = prices[0],high = prices[0];
+        int res = 0;
+        for (const int& p: prices) {
+            if (p < low) {
+                res = max(res, high - low);
+                low = p;
+                high = p;
             }
-            else if(prices[i] > max_prices){
-                max_prices = prices[i];
-            }
+            else if(p > high) high = p;
         }
-        max_dif = max(max_dif,max_prices - min_prices);
-        return max_dif;
+        res = max(res, high - low);
+        return res;
     }
 };
 // @lc code=end
