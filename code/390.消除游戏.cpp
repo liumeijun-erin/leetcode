@@ -28,7 +28,7 @@ public:
         // if (nums.size() == 1) return nums[0];
         // return nums[1];
         // 参考答案！
-        // 将情况装换位start  step n
+        // 将情况转换为状态变量：start  step n
         int start = 1;  // 既是索引也是值
         int step = 1;
         bool left2right = true;

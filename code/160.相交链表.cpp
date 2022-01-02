@@ -42,15 +42,46 @@ public:
         }
         return node;
     }*/
-        //solution2：参考答案，快慢指针
-        //(a+c)x = (b+c)y
-        //(ax-by)/(b-a)
+
+        // solution2：参考答案，快慢指针
+        // 思路：
+        // 有重复：a + b + c == b + c + a
+        // 无重复：a + b == b + a, return nullptr
         ListNode *l1 = headA, *l2 = headB;
-        while (l1 != l2) {
+        while (l1 != l2) {  // 允许l1 l2为nullptr作为判断条件
             l1 = l1? l1->next: headB;
             l2 = l2? l2->next: headA;
         }
         return l1;
+
+        // solution3：利用遍历得到len1，len2关系
+        // ListNode *pA = headA;
+        // ListNode *pB = headB;
+        // int lenA = 0, lenB = 0;
+        // while (pA) {
+        //     pA = pA->next;
+        //     ++lenA;
+        // }
+        // while (pB) {
+        //     pB = pB->next;
+        //     ++lenB;
+        // }
+        // pA = headA;
+        // pB = headB;
+        // while (lenA > lenB) {
+        //     pA = pA->next;
+        //     ++lenB;
+        // }
+        // while (lenA < lenB) {
+        //     pB = pB->next;
+        //     ++lenA;
+        // }
+        // while(pA && pA!=pB) {
+        //     pA = pA ->next;
+        //     pB = pB ->next;
+        // }
+        // if (pA && pA == pB) return pA;
+        // return nullptr;
     }
 };
 // @lc code=end
