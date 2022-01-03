@@ -7,30 +7,22 @@
 // @lc code=start
 class Solution {
 public:
+    // note:参考答案，不用两边分别识别word加入left_s, right_s
+    // 从头开始往后面塞即可
+    // note2:可以对新string进行操作 而不用s.erase
     string reverseWords(string s) {
-        int cnt = 0,size = s.size(),i = 0;
-        while(i < s.size()&&s[i]==' '){
-            ++i;
-            ++cnt;
+        string res = "";
+        int pos = s.size()-1;
+        while (pos >= 0) {
+            while (pos >= 0 && s[pos] == ' ') --pos;
+            if (pos < 0) break;
+            int pre = pos;
+            while(pre >= 0 && s[pre] != ' ') --pre;
+            res += (s.substr(pre+1, pos-pre) + ' ');
+            pos = pre;
         }
-        s.erase(0,i);
-        while(cnt < size){
-            i = 0;
-            while(i < s.size()&&s[i]!=' '){
-                ++i;
-                ++cnt;
-            }
-            string tmp = s.substr(0,i);
-            tmp = " " +tmp;
-            while(cnt<size&&i < s.size()&&s[i]==' ') {
-                ++i;
-                ++cnt;
-            }
-            s.erase(0,i);
-            s.insert(size-cnt,tmp);
-        }
-        while(s[0] == ' ') s.erase(0,1);
-        return s;
+        if (res.size()) res.pop_back();
+        return res;
     }
     //"  hello world  "
 };
