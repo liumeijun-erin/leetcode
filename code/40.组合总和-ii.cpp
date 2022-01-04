@@ -7,7 +7,10 @@
 // @lc code=start
 class Solution {
 public:
-    //控制边界条件不要太混乱
+    // 控制边界条件不要太混乱
+    // 由于要得到所有记录，所以还是backtracking better
+    // 利用target 而不是维护sum better
+    // 剪枝nums[pos] > target，必要
     void backtracking(vector<vector<int> >&ans,vector<int>& res,vector<int>& nums,int target,int pos){
         if(target == 0){
             ans.emplace_back(res);
