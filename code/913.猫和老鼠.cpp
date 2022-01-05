@@ -24,29 +24,29 @@ public:
     vector<vector<int>> m_graph;
     int m_dp[MAXN][MAXN][2*MAXN];  // mouse, cat, turns
     int catMouseGame(vector<vector<int>>& graph) {
-        memset(m_dp, -1, sizeof(dp));
+        memset(m_dp, -1, sizeof(m_dp));
         m_n = graph.size();
         m_graph = graph;
         return getResult(1,2,0);
     }
     int getResult(int mouse, int cat, int turns) {
-        if (turns >= 2 * n) return 0;
-         if (dp[mouse][cat][turns] < 0) {
+        if (turns >= 2 * m_n) return 0;
+         if (m_dp[mouse][cat][turns] < 0) {
             if (mouse == 0) {
-                dp[mouse][cat][turns] = 1;
+                m_dp[mouse][cat][turns] = 1;
             } else if (cat == mouse) {
-                dp[mouse][cat][turns] = 2;
+                m_dp[mouse][cat][turns] = 2;
             } else {
                 getNextResult(mouse, cat, turns);
             }
         }
-        return dp[mouse][cat][turns];
+        return m_dp[mouse][cat][turns];
     }
-    int getNextResult(mouse, cat, turns) {
+    int getNextResult(int mouse, int cat,int turns) {
         int curMove = turns % 2 == 0 ? mouse : cat;
         int defaultResult = curMove == mouse ? 2 : 1;
         int result = defaultResult;
-        for (int next : graph[curMove]) {
+        for (int next : m_graph[curMove]) {
             if (curMove == cat && next == 0) {
                 continue;
             }
@@ -55,12 +55,13 @@ public:
             int nextResult = getResult(nextMouse, nextCat, turns + 1);
             if (nextResult != defaultResult) {
                 result = nextResult;
-                if (result != DRAW) {
+                if (result != 0) {
                     break;
                 }
             }
         }
-        dp[mouse][cat][turns] = result;
+        m_dp[mouse][cat][turns] = result;
+        return result;
     }
 };
 // @lc code=end
