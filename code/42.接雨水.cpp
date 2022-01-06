@@ -8,42 +8,58 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        //solution:利用单调栈超时，改变策略不在过程中记录res
-        //todo：可以用哨兵数组改进
-        stack<pair<int,int> > s;
+        // 参考答案，三种解法都很妙
+        // solution1:参考答案 策略--按段算：利用单调栈+同时计算res!!! -- O(n), O(n)
+        // stack<int> s;
+        // int res = 0;
+        // for (int i = 0; i < height.size(); ++i) {
+        //     while (!s.empty()&& height[i] > height[s.top()]) {
+        //         int top = s.top();
+        //         s.pop();
+        //         if (s.empty()) break;
+        //         int left = s.top();
+        //         int cur_w = i - left - 1;
+        //         int cur_h = min(height[left], height[i]) - height[top]; // 看作之前已经被height[top]填平
+        //         res += cur_h * cur_w;
+        //     }
+        //     s.emplace(i);
+        // }
+        // return res;
+
+        // solution2:参考答案-dp，策略--利用h = min(leftmax,rightmax)
+        // int res = 0;
+        // if (height.size() <= 2) return res;
+        // vector<int> left_height(height);
+        // for (int i = 1; i < height.size(); ++i) {
+        //     if (left_height[i-1] > left_height[i]) left_height[i] = left_height[i-1];
+        // }
+        // vector<int> right_height(height);
+        // for (int i = height.size()-2; i >= 0 ; --i) {
+        //     if (right_height[i+1] > right_height[i]) right_height[i] = right_height[i+1];
+        //     res += min(right_height[i], left_height[i]) - height[i];
+        // }
+        // res += min(right_height[height.size()-1], left_height[height.size()-1]) - height[height.size()-1];
+        // return res;
+
+        // solution3:参考答案-双指针!!!相当于针对solution2的空间优化 -- O(n), O(1)
+        int left = 0, right = height.size()-1;
+        int left_maxh = 0, right_maxh = 0;
         int res = 0;
-        for(int i = 0;i < height.size();++i){
-            if(s.empty()||height[i] <s.top().first) s.emplace(make_pair(height[i],i));
-            else if(height[i] >s.top().first){
-                int left =  s.top().second,left_h =  s.top().first;
-                while(s.size()>1&&height[i] > s.top().first){
-                    left =  s.top().second;
-                    left_h =  s.top().first;
-                    s.pop();
-                }
-                if(s.size() == 1&&height[i] > s.top().first){
-                    for(int j = s.top().second + 1;j < i;++j){
-                        res += s.top().first - height[j];
-                    }
-                    s.pop();
-                    s.emplace(make_pair(height[i],i));
-                }
-                else s.emplace(make_pair(height[i],left));
+        while (left < right) {
+            left_maxh = max(left_maxh, height[left]);
+            right_maxh = max(right_maxh, height[right]);
+            // 对于pos == left来说，min(left_maxh,right_maxh(可能提高))
+            // 所以left_maxh < right_maxh 则不会变了
+            if (left_maxh < right_maxh) {
+                res += left_maxh - height[left];
+                ++left;
             }
-        }
-        int right = height.size();
-        while(!s.empty()){
-            int left = s.top().second;
-            int left_h = s.top().first;
-            //cout<<s.top().first<<" "<<s.top().second<<endl;
-            for(int i = right-1;i >= left;--i){
-                res += left_h - height[i];
+            else {
+                res += right_maxh - height[right];
+                --right;
             }
-            right = left;
-            s.pop();
         }
         return res;
-        //[2,0,2]
     }
 };
 // @lc code=end
