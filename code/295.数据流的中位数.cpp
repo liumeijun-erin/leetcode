@@ -13,6 +13,8 @@ class MedianFinder {
     //分析：不在中间取值，有序取头尾即可。priority_queue完美！
     //pq2：存大于等于当前中位数的，小的开始
     //pq1：存小于当前中位数的，大的开始
+
+    // 改进：只在求平均的时候来回转换，平时不维持
     priority_queue<int> pq1;
     priority_queue<int,vector<int>,greater<int> > pq2;
     
@@ -22,32 +24,23 @@ public:
     }
     
     void addNum(int num) {
-        if (pq2.empty()) pq2.emplace(num);
-        else{
-            if (num < pq2.top()) {
-                pq1.emplace(num);
-                while(pq1.size() > pq2.size()) {
-                    int tmp = pq1.top();
-                    pq1.pop();
-                    pq2.emplace(tmp);
-                }
-            }
-            else {
-                pq2.emplace(num);
-                while(pq1.size() + 1 < pq2.size()) {
-                    int tmp = pq2.top();
-                    pq2.pop();
-                    pq1.emplace(tmp);
-                }
-            }
-        }
+       if (!pq2.empty() && num >= pq2.top()) pq2.emplace(num);
+       else pq1.emplace(num);
     }
     
     double findMedian() {
-        int total = pq1.size() + pq2.size();
-        double res = pq2.top();
-        if(total % 2 == 0) res = (pq1.top() + res) / 2.0;
-        return res;
+        while (pq1.size() < pq2.size()) {
+            int tmp = pq2.top();
+            pq2.pop();
+            pq1.emplace(tmp);
+        }
+        while (pq1.size() > pq2.size() + 1) {
+            int tmp = pq1.top();
+            pq1.pop();
+            pq2.emplace(tmp);
+        }
+        if (pq1.size() == pq2.size()) return (pq1.top() + pq2.top()) / 2.0;
+        return pq1.top();
     }
 };
 
