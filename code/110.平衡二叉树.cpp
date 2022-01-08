@@ -18,18 +18,15 @@
  */
 class Solution {
 public:
-    //tip：参考答案使用balance标记提前结束递归
-    int maxHeight(TreeNode* root,bool& balance){
-        if(!balance||!root) return 0;
-        int left = maxHeight(root->left,balance);
-        int right = maxHeight(root->right,balance);
-        if(abs(left-right) > 1) balance = false;
-        return max(left,right)+1;
+    int balancedHeight(TreeNode* node) {
+        if (!node) return 0;
+        int left_h = balancedHeight(node->left);
+        int right_h = balancedHeight(node->right);
+        if (left_h == -1 || right_h == -1 || abs(left_h - right_h) > 1) return -1;
+        return max(left_h, right_h) + 1;
     }
     bool isBalanced(TreeNode* root) {
-        bool balance = true;
-        maxHeight(root,balance);
-        return balance;
+        return (balancedHeight(root) != -1);
     }
 };
 // @lc code=end
