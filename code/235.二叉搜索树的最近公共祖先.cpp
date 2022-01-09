@@ -17,6 +17,7 @@
 
 class Solution {
 public:
+    // 明明可以循环的不要用递归
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root) return root;
         if(p->val > q->val) swap(p,q);

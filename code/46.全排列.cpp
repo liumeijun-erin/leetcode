@@ -24,6 +24,26 @@ public:
         backtracking(nums,0);
         return res;
     }
+    // void help(vector<int>& nums, int& pos, vector<vector<int> >& res) {
+    //     if (pos == 0) {
+    //         res.emplace_back(nums);
+    //         return ;
+    //     }
+    //     --pos;
+    //     help(nums, pos, res);
+    //     for (int i = pos; i >= 0; --i) {
+    //         swap(nums[i], nums[pos+1]);
+    //         help(nums, pos, res);
+    //         swap(nums[i], nums[pos+1]);
+    //     }
+    //     ++pos;
+    // }
+    // vector<vector<int>> permute(vector<int>& nums) {
+    //     vector<vector<int> > res;
+    //     int pos = nums.size()-1;
+    //     help(nums,pos,res);
+    //     return res;
+    // }
 };
 // @lc code=end
 
