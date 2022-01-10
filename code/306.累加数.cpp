@@ -7,60 +7,34 @@
 // @lc code=start
 class Solution {
 public:
-    string add(string& s1, string& s2) {
-        int pre = 0;
-        int pos1 = s1.size() - 1, pos2 = s2.size() - 1;
-        string res = "";
-        while (pos1 >= 0 && pos2 >= 0) {
-            int tmp = pre + (s1[pos1--] - '0') + (s2[pos2--] - '0');
-            res += (tmp%10) + '0';
-            pre = tmp/10;
+    bool helpAdditiveNumber(string& num, long long num1, long long num2, int pos) {
+        string sum_s = to_string(num1 + num2);
+        if (pos + sum_s.size() > num.size() || num.substr(pos,sum_s.size())!=sum_s) {
+            return false;
         }
-        while (pos1 >= 0) {
-            int tmp = pre + (s1[pos1--] - '0');
-            res += (tmp%10) + '0';
-            pre = tmp/10;
-        }
-        while (pos2 >= 0) {
-            int tmp = pre + (s2[pos2--] - '0');
-            res += (tmp%10) + '0';
-            pre = tmp/10;
-        }
-        if (pre) res += (pre + '0');
-        reverse(res.begin(), res.end());
-        return res;
+        // cout<< num1<<" "<<num2<<" "<<sum_s<<endl;
+        if (pos + sum_s.size() == num.size()) return true;
+        return helpAdditiveNumber(num, num2, num1+num2,pos+sum_s.size());
     }
-    
-    bool help(string& num, string& pre1_s, string& pre2_s, int pos) {
-        while (pos < num.size()) {
-            string tmp = add(pre1_s,pre2_s);
-            for(int i = 0;i < tmp.size();++i) {
-                if(pos >= num.size() || num[pos++] != tmp[i]) return false;
-            }
-            swap(pre1_s,pre2_s);
-            swap(pre2_s,tmp);
-        }
-        return true;
-    }
-
     bool isAdditiveNumber(string num) {
-        for (int end1 = 1; end1 < num.size(); ++end1) {
-            if (num[end1] == '0' &&num[0]!='0'&& end1 + 1 < num.size() && num[end1+1] == '0') {
-                continue;
+        if (num.length() < 3) return false;
+        long long num1 = 0, num2 = 0;
+        for (int i = 0; i + 2 < num.size() ; ++i) {
+            num1 = num1 * 10 + (num[i]-'0');
+            if (num1 >= 1e18) break;
+            num2 = 0;
+            for (int j = i + 1; j + 1 < num.size(); ++j) {
+                num2 = num2 * 10 + (num[j]-'0');
+                if (num2 >= 1e18) break;
+                if (helpAdditiveNumber(num, num1, num2, j+1)) return true;
+                if (j == i+1 && num[j] == '0') break;
             }
-            for (int end2 = end1 + 1; end2 < num.size(); ++end2) {
-                if (num[end2] == '0' &&num[end1] == '0'&& end2 + 1 < num.size() && num[end2 + 1] == '0') {
-                    continue;
-                }
-                string pre1_s = num.substr(0,end1);
-                string pre2_s = num.substr(end1,end2-end1);
-                if (help(num,pre1_s,pre2_s,end2)) return true;
-            }
+            if (i == 0 && num[i] == '0') break;
         }
         return false;
     }
-    //"101" 
-    //"000"
+    // tip1:"000"特殊值0
+    // tip2:long long处理
 
 };
 // @lc code=end
