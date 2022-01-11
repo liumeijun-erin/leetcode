@@ -29,6 +29,23 @@ public:
             ++down;
         }
         return res;
+        
+        // vector<int> res;
+        // int m = matrix.size(), n = matrix[0].size();
+        // int pos = 0;
+        // while (m > 1 && n > 1) {
+        //     for (int i = 0; i < n; ++i) res.emplace_back(matrix[pos][pos + i]);
+        //     if (m > 2) for (int i = pos+1; i < pos + m - 1; ++i) res.emplace_back(matrix[i][pos + n - 1]);
+        //     for (int i = pos + n - 1; i >= pos; --i) res.emplace_back(matrix[pos+m-1][i]);
+        //     if (m > 2) for (int i = pos + m - 2; i > pos; --i) res.emplace_back(matrix[i][pos]);
+        //     ++pos;
+        //     m -= 2;
+        //     n -= 2;
+        // }
+        // if (m == 1) for (int i = 0; i < n; ++i) res.emplace_back(matrix[pos][pos + i]);
+        // else if (n == 1) for (int i = 0; i < m; ++i) res.emplace_back(matrix[pos+i][pos]);
+        // return res;
+        // }
         // [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
         // [[7],[9],[6]]
         // [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]]
