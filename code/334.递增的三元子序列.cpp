@@ -36,6 +36,45 @@ public:
             }
         }
         return false;
+
+        // int a = 0, b = 0, c = 0;
+        // int state = 0; // 1-a,2-ab,3-abc;
+        // for (const int& num: nums) {
+        //     switch (state) {
+        //         case 1: {
+        //             if (num <= a) a = num;
+        //             else {
+        //                 b = num;
+        //                 state = 2;
+        //             }
+        //             break;
+        //         }
+        //         case 2: {
+        //             if (num > b) return true;
+        //             else if (num > a) b = num;
+        //             else {
+        //                 c = num;
+        //                 state = 3;
+        //             }
+        //             break;
+        //         }
+        //         case 3: {
+        //            if (num > b) return true;
+        //            else if (num > c) {
+        //                a = c;
+        //                b = num;
+        //                state = 2;
+        //            }
+        //            else c = num;
+        //            break;
+        //         }
+        //         default:{
+        //             a = num;
+        //             state = 1;
+        //         }
+        //     }
+        // }
+        // return false;
     }
 };
 // @lc code=end
