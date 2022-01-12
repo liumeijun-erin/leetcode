@@ -12,16 +12,15 @@ public:
             return v1[0] < v2[0];
         });
         vector<vector<int> > res;
-        int pos = 0, pre, next;
-        while (pos < intervals.size()) {
-            pre = intervals[pos][0];
-            next = intervals[pos][1];
-            ++pos;
-            while (pos < intervals.size() && intervals[pos][0] <= next) {
-                next = max(next, intervals[pos++][1]);
-            } 
-            res.emplace_back(vector<int> {pre, next});
+        vector<int> tmp = intervals[0];
+        for (const vector<int>& v: intervals) {
+            if (v[0] > tmp[1]) {
+                res.emplace_back(tmp);
+                tmp = v;
+            }
+            else tmp[1] = max(v[1],tmp[1]);
         }
+        res.emplace_back(tmp);
         return res;
     }
 };
