@@ -38,7 +38,10 @@ public:
         return ans;*/
         //way3:自己反省重写一遍m,其实可以原地覆盖，对于每个nums[i]与前k个比较,大的话覆盖，小的话接在后面
         //但是由于k可能很大，所以使用deque进行优化,由于deque首位为当前可取最大的，所以小的留着直到一旦有大的可能解都清空
-        //答案中deque中存的是index
+        //  答案中deque中存的是index
+        //  使用deque而不使用pq由于冗余部分小的不用存：
+        // 只存比原来位置当前最大的，以及所有比之前小的
+        // 单调栈思想：确定front为解 + 排列有序
         if(k == 1) return nums;
         vector<int> res;
         deque<int> q;
@@ -51,6 +54,18 @@ public:
             }
         }
         return res;
+        // way4:pq--表现差
+        // priority_queue<pair<int,int> > pq;
+        // vector<int> res ;
+        // for (int i = 0; i < k-1; ++i) {
+        //     pq.emplace(make_pair(nums[i], i));
+        // }
+        // for (int i = k-1; i < nums.size(); ++i) {
+        //     pq.emplace(make_pair(nums[i], i));
+        //     while(pq.top().second + k <= i) pq.pop();
+        //     res.emplace_back(pq.top().first);
+        // }
+        // return res;
     }
 };
 // @lc code=end
