@@ -45,6 +45,7 @@ public:
         int n = matrix[0].size();
         if(!n) return 0;
         vector<vector<int> > dp(m,vector<int> (n));
+        // 记录(i,j)上最大高度
         for(int j = 0;j < n;++j){
             for(int i = 0;i < m;++i){
                 dp[i][j] = matrix[i][j]-'0';
@@ -52,6 +53,7 @@ public:
             }
         }
         int res = 0;
+        // 对每一行利用单调栈转换为题目84 + 单调栈+哨兵数组
         for(int i = m-1;i >= 0;--i){
             stack<int> s;
             vector<int> left(n,-1);
@@ -64,6 +66,7 @@ public:
                 }
                 s.emplace(j);
             }
+            // 注意思想策略在于针对每一个柱状遍历左右，所以用while每一个都遍历
             while(!s.empty()){
                 res = max(res,dp[i][s.top()]*(n-left[s.top()]));
                 s.pop();
