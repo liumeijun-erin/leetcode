@@ -8,24 +8,18 @@
 class Solution {
 public:
     int findNthDigit(int n) {
-        if(n < 10) return n;
-        n -= 10;
-        int cnt = 2;
-        int tmp = 90;
-        while(n > (long long)tmp * cnt){
-            n -= cnt * tmp;
-            tmp *= 10;
-            ++cnt;
+        // 参考答案
+        int start=1;
+        long long d = 1, count=9;
+        --n;
+        while (n >= count){
+            n -= count;
+            start *= 10;
+            ++d;
+            count = 9 * start * d;
         }
-        int digit = cnt - n % cnt - 1 ;
-        //cout<<digit<<" ";
-        n = n / cnt + tmp / 9 ;
-        //cout<<n<<endl;
-        while(digit--){
-            n /= 10;
-        }
-        return n%10;
-    }
+        int num = start + n / d;
+        return to_string(num)[n % d]-'0';
 };
 // @lc code=end
 
