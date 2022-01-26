@@ -18,36 +18,29 @@
  */
 class Solution {
 public:
-    //参考答案：利用中序遍历二叉查找树结果有序!!!
-    //且要利用好给定的两者互换的关系，不用大范围remove/insert
-    //note:巧妙定义异常：序列中比前一个小的；如果有两个则交换第二个和第一个的前一个，如果有一
-    //tip：这里记录前一个的pre应该用TreeNode*类型！！！这样就不用二次遍历改结构
-    //参考答案提示：可能有两种情况-一种异常，这是调换的两个值肯定相邻!!!--两种异常，这时记录两个指针对调值即可
-    void inorder(TreeNode* root,TreeNode*& pre,TreeNode*& n1,TreeNode*& n2){
-        if(!root) return ;
-        inorder(root->left,pre,n1,n2);
-        if(pre&&root->val < pre->val){
-            //cout<<"error"<<endl;
-            if(n1){
-                n1 = root;   
-                //stop = true; 
-                //cout<<n1->val<<" "<<n2->val<<endl;
+    // note1：指针引用
+    // note2:由于有[0,1]类样例存在，因此是否!a都要修改b，
+    // note3:由于b已经被修改，所以不能以a&&b作为判断终止条件
+    void help(TreeNode* root, TreeNode*& a, TreeNode*& b, TreeNode*& pre) {
+        if (!root ) return;
+        if (root->left) help(root->left, a, b, pre);
+        if (pre && root->val < pre->val) {
+            if (!a) {
+                a = pre;
             }
-            else{
-                n1 = root;
-                n2 = pre;
-                //cout<<n1->val<<" "<<n2->val<<endl;
-            }
+            b= root;
         }
         pre = root;
-        inorder(root->right,pre,n1,n2);
+        if (root->right) help(root->right, a, b, pre);
     }
     void recoverTree(TreeNode* root) {
-        TreeNode* n1 = nullptr,*n2 = nullptr,*pre = nullptr;
-        inorder(root,pre,n1,n2);
-        int tmp = n1->val;
-        n1->val = n2->val;
-        n2->val = tmp;
+       TreeNode* a = nullptr;
+       TreeNode* b = nullptr;
+       TreeNode* pre = nullptr;
+       help(root,a,b,pre);
+       int tmp = a->val;
+       a->val = b->val;
+       b->val = tmp;
     }
 };
 // @lc code=end
