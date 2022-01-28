@@ -49,6 +49,26 @@ public:
         root->right = sortedListToBST(fast);
         return root;
     }
+    // TreeNode* help(ListNode* head, int len) {
+    //     if (len == 0) return nullptr;
+    //     ListNode* node = head;
+    //     int len_left = len/2;
+    //     while(len_left--) node = node->next;
+    //     TreeNode* root = new TreeNode(node->val);
+    //     root->left = help(head, len/2);
+    //     root->right = help(node->next, len-len/2-1);
+    //     return root;
+        
+    // }
+    // TreeNode* sortedListToBST(ListNode* head) {
+    //     ListNode* node = head;
+    //     int len = 0;
+    //     while (node) {
+    //         node = node->next;
+    //         ++len;
+    //     }
+    //     return help(head,len);
+    // }
 };
 // @lc code=end
 
