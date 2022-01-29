@@ -52,6 +52,32 @@ public:
 
         return root;
         // [1,2,3,4,5,null,6,7,null,null,null,null,8]
+//         Node* lower = nullptr;
+//     Node* head = nullptr;
+// public:
+//     void help(Node* node) {
+//         if (node->left) {
+//             if (!head) head = node->left;
+//             if (lower) lower->next = node->left;
+//             lower = node->left;
+//         }
+//         if (node->right) {
+//             if (!head) head = node->right;
+//             if (lower) lower->next = node->right;
+//             lower = node->right;
+//         }
+//         if (!(node->next)) {
+//             lower = nullptr;
+//             node = head;
+//             head = nullptr;
+//             if(node) help(node);
+//         }
+//         else help(node->next);
+//     }
+//     Node* connect(Node* root) {
+//         if (root) help(root);
+//         return root;
+//     }
     }
 };
 // @lc code=end
