@@ -30,54 +30,28 @@ public:
     // 先想一个基础的baseline：queue实现bfs，then优化空间，不是利用bfs建立next；
     // 而是去掉bfs利用上层next关系就可以实现下层next关系
     Node* connect(Node* root) {
-        if (!root) return root;
-        Node* layer_start = root;
-        while (layer_start) {
-            Node* last = nullptr;
-            Node* next_layer_start = nullptr;//这个设置参考了答案layer_start + next_layer_start
-            for (Node* n = layer_start; n != nullptr; n = n->next) {
-                if (n->left) {
-                    if (last) last->next = n->left;
-                    else next_layer_start = n->left;
-                    last = n->left;
-                }
-                if (n->right) {
-                    if (last) last->next = n->right;
-                    else next_layer_start = n->right;
-                    last = n->right;
-                }
+        Node* node = root;
+        Node* lower = nullptr;
+        Node* head = nullptr;
+        while (node) {
+            if (node->left) {
+                if (!head) head = node->left;
+                if (lower) lower->next = node->left;
+                    lower = node->left;
             }
-            layer_start = next_layer_start;
+            if (node->right) {
+                if (!head) head = node->right;
+                if (lower) lower->next = node->right;
+                lower = node->right;
+            }
+            if (!(node->next)) {
+                lower = nullptr;
+                node = head;
+                head = nullptr;
+            }
+            else node = node->next;
         }
-
         return root;
-        // [1,2,3,4,5,null,6,7,null,null,null,null,8]
-//         Node* lower = nullptr;
-//     Node* head = nullptr;
-// public:
-//     void help(Node* node) {
-//         if (node->left) {
-//             if (!head) head = node->left;
-//             if (lower) lower->next = node->left;
-//             lower = node->left;
-//         }
-//         if (node->right) {
-//             if (!head) head = node->right;
-//             if (lower) lower->next = node->right;
-//             lower = node->right;
-//         }
-//         if (!(node->next)) {
-//             lower = nullptr;
-//             node = head;
-//             head = nullptr;
-//             if(node) help(node);
-//         }
-//         else help(node->next);
-//     }
-//     Node* connect(Node* root) {
-//         if (root) help(root);
-//         return root;
-//     }
     }
 };
 // @lc code=end
