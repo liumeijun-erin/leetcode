@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=142 lang=cpp
- *
- * [142] 环形链表 II
- */
-
-// @lc code=start
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -15,24 +8,22 @@
  */
 class Solution {
 public:
+   // 注意：!head !(head->next) 容易出错; 要用!= nullptr
     ListNode *detectCycle(ListNode *head) {
-        ListNode* fast = head, *slow = head;
-        while(fast!=NULL) {
-            if(fast->next) fast = fast->next->next;
-            else fast = fast->next;
+        if (head == nullptr || head->next == nullptr) return nullptr;
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while (fast != nullptr && fast->next != nullptr && slow != fast) {
+            fast = fast->next->next;
             slow = slow->next;
-            if(fast == slow) break;
         }
-        //需要画图查看
-        if(fast != NULL){
-            fast = head;
-            while(slow != fast){
-                fast = fast->next;
-                slow = slow->next;
-            }
+        if (slow != fast) return nullptr;
+        fast = head;
+        slow = slow->next;
+        while(fast != slow){
+            fast = fast->next;
+            slow = slow->next;
         }
-        return fast;
+        return slow;
     }
 };
-// @lc code=end
-
