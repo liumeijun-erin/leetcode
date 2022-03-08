@@ -222,6 +222,17 @@ public:
         vector<string> s;
         for(int i = 0;i < n;++i){
          if(visited1[i]&&visited2[i]){
+                cout<<i<<endl;
+                cout<<"from_begin_res:";
+                for (int j = 0 ; j < res1[i].size(); ++j) {
+                    cout<<res1[i][j]<<" ";
+                }
+                cout<<endl;
+                cout<<"from_end_res:";
+                for (int j = 0 ; j < res2[i].size(); ++j) {
+                    cout<<res2[i][j]<<" ";
+                }
+                cout<<endl;
                 vector<vector<string> > ans1,ans2;
                 vector<string> path1,path2;
                 backtracking(ans1,res1,path1,wordList,src,i);
