@@ -13,32 +13,32 @@ public:
     //因此可以左闭右开分桶，桶内维护最大最小值，然后遍历桶边界即可
     //根本策略：！！！在O(n)时间复杂度下保留想要信息完成排序
     int maximumGap(vector<int>& nums) {
-        if(nums.size() < 2) return 0;
-        int max_n = nums[0],min_n = nums[0];
-        for(const int&num:nums){
-            max_n = max(max_n,num);
-            min_n = min(min_n,num);
+        if (nums.size() <= 1) return 0;
+
+        int min_num = INT_MAX, max_num = -1;
+        for (const int& num: nums) {
+            min_num = min(min_num, num);
+            max_num = max(max_num, num);
         }
-        int d = (max_n - min_n)/(nums.size()-1);
-        d = max(1,d);
-        //note:考虑d为0情况：
-        int cnt = (max_n - min_n)/d + 1;
-        vector<pair<int,int> > bucket(cnt,make_pair(-1,-1));
-        for(const int&num:nums){
-            int tmp = (num-min_n)/d;
-            if(bucket[tmp].first == -1) {
-                bucket[tmp].first = num;
-                bucket[tmp].second = num;
+        if (max_num == min_num) return 0;
+
+        int bucket_len = (max_num - min_num) / (nums.size()-1);
+        bucket_len = max(1, bucket_len);
+        int cnt = (max_num - min_num)/ bucket_len + 1;
+        vector<pair<int,int> > bucket(cnt, make_pair(INT_MAX, -1));
+        for (const int& num : nums) {
+            int bucket_id = (num - min_num) / bucket_len;
+            bucket[bucket_id].first = min(bucket[bucket_id].first, num);
+            bucket[bucket_id].second = max(bucket[bucket_id].second, num);
+        }
+        int res = bucket_len;
+        int pre = -1;
+        for (pair<int,int>& p: bucket) {
+            if (p.first == INT_MAX) continue;
+            if (pre != -1) {
+                res = max(res, p.first - pre);
             }
-            else if(bucket[tmp].first > num) bucket[tmp].first = num;
-            else if(bucket[tmp].second < num) bucket[tmp].second = num;
-        }
-        int pre = 0,res = 0;
-        while(pre < cnt && bucket[pre].first == -1) ++pre;
-        for(int i = pre + 1;i < cnt;++i){
-            if(bucket[i].first == -1) continue;
-            if(bucket[i].first - bucket[pre].second > res) res = bucket[i].first - bucket[pre].second;
-            pre = i;
+            pre = p.second;
         }
         return res;
     }
