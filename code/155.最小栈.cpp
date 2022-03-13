@@ -6,34 +6,19 @@
 
 // @lc code=start
 class MinStack {
-public:
-    /** initialize your data structure here. */
-    //tip:use assisting stack
-    //always check if stack is empty when using .top
-    //modification1:why store minIndex when you can store minNum
-    //vector<int> s;
-    stack<int> s;
     stack<int> minStack;
-    //int min;
+    stack<int> s;
+public:
     MinStack() {
-        //min = 0;
-        minStack.push(0x7fffffff);//faster
     }
     
     void push(int val) {
-        minStack.push(min(val,minStack.top()));
-        s.push(val);
-        /*if(s.size() == 0 || val < minStack.top()){
-            minStack.push(val);
-        }
-        else{
-            minStack.push(minStack.top());
-        }
-        s.push(val);*///faster
+        if (s.empty() || val <= minStack.top()) minStack.emplace(val);
+        s.emplace(val);
     }
     
     void pop() {
-        minStack.pop();
+        if (s.top() == minStack.top()) minStack.pop();
         s.pop();
     }
     
@@ -45,6 +30,7 @@ public:
         return minStack.top();
     }
 };
+
 
 /**
  * Your MinStack object will be instantiated and called as such:
