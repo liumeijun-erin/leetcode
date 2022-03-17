@@ -8,17 +8,19 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int max_num = nums[0];
-        if(nums.size() == 1) return max_num;
-        int a = 0,b = 0;
-        for(const int& num:nums){
-            int sum1 = a + num;
-            int sum2 = b ;
-            a = b;
-            b = max(sum1,sum2);
-            max_num = max(b,max_num);
+        int res = nums[0];
+        if (nums.size() == 1) return res;
+        res = max(res, nums[1]);
+        if (nums.size() == 2) return res;
+        
+        nums[2] += nums[0];
+        res = max(res, nums[2]);
+
+        for(int i = 3; i < nums.size(); ++i) {
+            nums[i] += max(nums[i-2], nums[i-3]);
+            res = max(res, nums[i]);
         }
-        return max_num;
+        return res;
     }
 };
 // @lc code=end
