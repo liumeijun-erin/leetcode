@@ -9,6 +9,7 @@ class Solution {
     //tip1:使用trie加快单词查找
     //tip2：事先想好传引用/传值，visited/board类传指针其他改+恢复/传值均可。记得处理好
     //experiment1:node和tmp传值20.65%/81.76% 传指针28.68%、78.49%
+    // root作为私有变量非常重要！否则超时
     class Solution {
     class TrieNode {
     public:
