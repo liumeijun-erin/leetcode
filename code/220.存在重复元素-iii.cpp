@@ -12,7 +12,8 @@ public:
     //结合题目特性因此一个桶中最多只有一个元素:利用条件为返回bool值，不要过早嫌数据结构存储麻烦！
     //将按序号分段--转换坐标系--转换为数值分段，稀疏且只要保证和相邻比较即可！!!
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        // key pnt: 同一个桶里不用保存多个，因为要是周围有符合的点的话早就符合了；如果被同一组内冲掉的话，也会符合要求return true； 同一组差很久冲掉的话，周围新点也会差很久。所以不影响
+        // key pnt1: 同一个桶里不用保存多个，因为要是周围有符合的点的话早就符合了；如果被同一组内冲掉的话，也会符合要求return true； 同一组差很久冲掉的话，周围新点也会差很久。所以不影响
+        // key pnt2：不用vector保存bucket ，个数太多；使用unordered_map
         if(nums.empty()||!k) return false;
         long long min_num = nums[0],max_num = nums[0];
         for(const int& n:nums){
