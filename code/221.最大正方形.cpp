@@ -65,6 +65,31 @@ public:
     }
     //[["1","1","0","1"],["1","1","0","1"],["1","1","1","1"]]
     //[["1","1","1","1","0"],["1","1","1","1","0"],["1","1","1","1","1"],["1","1","1","1","1"],["0","0","1","1","1"]]
+        // solution3: 直观，但是表现一般
+        // int res = 0;
+        // int m = matrix.size(), n = matrix[0].size();
+        // vector<int> cnt_r(n,0);
+        // vector<int> cnt_c(n,0);
+        // vector<vector<int> > len(m+1, vector<int> (n+1, 0));
+
+        // for (int i = 0; i < m; ++i) {
+        //     for (int j = 0; j < n; ++j) {
+        //         if (matrix[i][j] == '1') {
+        //             cnt_r[j] = cnt_r[j] + 1;
+        //             if (j == 0) cnt_c[j] = 1;
+        //             else cnt_c[j] = cnt_c[j-1] + 1;
+        //             int tmp_len = min(cnt_c[j], cnt_r[j]);
+        //             len[i+1][j+1] = min(tmp_len, (len[i][j] + 1));
+        //             res = max(res,len[i+1][j+1]);
+        //         }
+        //         else {
+        //             cnt_r[j] = 0;
+        //             cnt_c[j] = 0;
+        //         }
+        //     }
+        // }
+        
+        // return res*res;
 };
 // @lc code=end
 
