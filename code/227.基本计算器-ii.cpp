@@ -47,32 +47,79 @@ public:
         return res;*/
         //solution2:参考答案--利用这是基本计算器，直接存为+1，-2最后accumulate即可，不用存oper的stack
         //50%18%
-        vector<int> nums;
-        char oper;
-        for(int i = 0;i < s.size();++i){
-            if(s[i] == ' ') continue;
-            if(s[i]>'9'||s[i]<'0') oper = s[i]; 
-            else{
-                int j = i;
-                while(j < s.size()&&s[j]<='9'&&s[j]>='0') ++j;
-                int num = stoi(s.substr(i,j-i));
-                i = j-1;
-                if(oper=='/'||oper=='*'){
-                    int pre = nums.back();
-                    nums.pop_back();
-                    switch(oper){
-                        case '*':num = pre*num;break;
-                        case '/':num = pre/num;
-                    }
-                }
-                else if(oper == '-') num = -num;
-                nums.emplace_back(num);
-            }
+        // vector<int> nums;
+        // char oper;
+        // for(int i = 0;i < s.size();++i){
+        //     if(s[i] == ' ') continue;
+        //     if(s[i]>'9'||s[i]<'0') oper = s[i]; 
+        //     else{
+        //         int j = i;
+        //         while(j < s.size()&&s[j]<='9'&&s[j]>='0') ++j;
+        //         int num = stoi(s.substr(i,j-i));
+        //         i = j-1;
+        //         if(oper=='/'||oper=='*'){
+        //             int pre = nums.back();
+        //             nums.pop_back();
+        //             switch(oper){
+        //                 case '*':num = pre*num;break;
+        //                 case '/':num = pre/num;
+        //             }
+        //         }
+        //         else if(oper == '-') num = -num;
+        //         nums.emplace_back(num);
+        //     }
+        // }
+        // int res =0;
+        // res = accumulate(nums.begin(),nums.end(),res);
+        // return res;
+        // solution3: 如果是乘除则当场处理 表现很好！
+        int res = 0;
+        bool add = true;
+        int next = -1;
+        bool multiply = true;
+
+        int pos = 0;
+        while (pos < s.size() && s[pos] == ' ') ++pos;
+        if (s[pos] == '+') ++pos;
+        else if (s[pos] == '-') {
+            add = false;
+            ++pos;
         }
-        int res =0;
-        res = accumulate(nums.begin(),nums.end(),res);
+
+        while (pos < s.size()) {
+            if (s[pos] == ' ') {
+                ++pos;
+                continue;
+            }
+            int tmp = 0;
+            while (pos < s.size() && s[pos] >= '0' && s[pos] <= '9') {
+                tmp = tmp * 10 + (s[pos++]-'0');
+            }
+            while (pos < s.size() && s[pos] == ' ') ++pos;
+            if (next != -1) {
+                if (multiply) next *= tmp;
+                else next /= tmp;
+            }
+            else next = tmp;
+            if (pos == s.size() || s[pos] == '+' || s[pos] == '-') {
+                if (add) res += next;
+                else res -= next;
+                //cout<<res<<endl;
+                if(pos < s.size()) add =  (s[pos] == '+');
+                next = -1;
+            }
+            else {
+                multiply = (s[pos] == '*');
+
+            }
+            ++pos;
+            //cout<<tmp<<" "<<res<<endl;
+        }
+            
         return res;
+
     }
+    //
     //"42"
     //"1-1+1"
     //"0-2147483647"
